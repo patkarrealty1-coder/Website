@@ -132,7 +132,7 @@ const connectDB = async () => {
 const PORT = process.env.PORT || 4000
 const startServer = async () => {
   await connectDB()
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Server running on port ${PORT}`)
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`)
     console.log(`🔗 API Health: http://localhost:${PORT}/api/health`)
