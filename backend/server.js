@@ -129,7 +129,7 @@ const connectDB = async () => {
 }
 
 // Start server
-const PORT = process.env.PORT || 4000
+const PORT = parseInt(process.env.PORT, 10) || 4000
 const startServer = async () => {
   await connectDB()
   app.listen(PORT, '0.0.0.0', () => {
