@@ -10,6 +10,7 @@
     "seed:blogs": "node seedBlogs.js",
     "seed:projects": "node seedProjects.js",
     "seed:ongoing": "node seedOngoingProjects.js",
+    "create-users": "node scripts/createUsers.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

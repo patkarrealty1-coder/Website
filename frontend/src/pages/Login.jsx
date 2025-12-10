@@ -58,8 +58,21 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center px-4">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen relative flex items-center justify-center px-4 overflow-hidden">
+      {/* Background Image - Same as Landing Page */}
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: 'url(/images/Firefly.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Dark overlay for better form visibility */}
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
+      <div className="max-w-md w-full relative z-10">
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
@@ -132,10 +145,20 @@ const Login = () => {
           </form>
 
           {/* Default Credentials Info */}
-          <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <p className="text-sm text-green-800 font-medium mb-2">Default Admin Credentials:</p>
-            <p className="text-xs text-green-700">Email: admin@patkarsrealty.com</p>
-            <p className="text-xs text-green-700">Password: admin123</p>
+          <div className="mt-6 space-y-4">
+            {/* Admin Credentials */}
+            <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-sm text-green-800 font-medium mb-2">Default Admin Credentials:</p>
+              <p className="text-xs text-green-700">Email: admin@patkarsrealty.com</p>
+              <p className="text-xs text-green-700">Password: admin123</p>
+            </div>
+
+            {/* Normal User Credentials */}
+            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800 font-medium mb-2">Demo User Credentials:</p>
+              <p className="text-xs text-blue-700">Email: user@patkarsrealty.com</p>
+              <p className="text-xs text-blue-700">Password: user123</p>
+            </div>
           </div>
 
           {/* Footer */}

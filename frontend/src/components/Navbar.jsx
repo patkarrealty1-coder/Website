@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   // Determine if we're on a page that needs dark navbar (light background)
-  const isDarkNavbar = ['/residential', '/commercial', '/listings', '/contact', '/blog', '/wishlist', '/profile', '/login', '/register', '/setup', '/completed-projects', '/ongoing-projects'].includes(location.pathname) || location.pathname.startsWith('/admin') || location.pathname.startsWith('/property/')
+  const isDarkNavbar = ['/residential', '/commercial', '/listings', '/contact', '/blog', '/wishlist', '/profile', '/setup', '/completed-projects', '/ongoing-projects'].includes(location.pathname) || location.pathname.startsWith('/admin') || location.pathname.startsWith('/property/')
 
   // Check if user is logged in
   useEffect(() => {
