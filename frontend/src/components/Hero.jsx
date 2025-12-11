@@ -130,25 +130,37 @@ const Hero = ({ onExploreClick }) => {
             </p>
           </div>
           
-          {/* Buttons Container - Fixed Position */}
+          {/* Buttons Container - Fixed Position and Size */}
           <div className="w-full max-w-2xl mx-auto">
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 px-4">
               <Link
                 to="/contact"
-                className={`inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full sm:w-auto sm:min-w-[220px] backdrop-blur-sm ${
+                className={`inline-flex items-center justify-center bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-colors duration-300 shadow-lg backdrop-blur-sm ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
-                style={{ transitionDelay: '300ms' }}
+                style={{ 
+                  transitionDelay: '300ms',
+                  width: '100%',
+                  maxWidth: '280px',
+                  height: '56px',
+                  minHeight: '56px'
+                }}
               >
                 Book a Free Consultation
               </Link>
               
               <button
                 onClick={onExploreClick}
-                className={`inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full sm:w-auto sm:min-w-[220px] backdrop-blur-sm ${
+                className={`inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-colors duration-300 shadow-lg backdrop-blur-sm ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
-                style={{ transitionDelay: '400ms' }}
+                style={{ 
+                  transitionDelay: '400ms',
+                  width: '100%',
+                  maxWidth: '280px',
+                  height: '56px',
+                  minHeight: '56px'
+                }}
               >
                 <span>Explore Properties</span>
                 <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />

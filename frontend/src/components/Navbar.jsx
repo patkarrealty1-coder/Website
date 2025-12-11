@@ -66,13 +66,13 @@ const Navbar = () => {
             <span className={`text-3xl font-bold ${isDarkNavbar ? 'text-white' : 'text-white'}`}>Patkar's Realty</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
+          {/* Desktop Navigation - Fixed Positioning */}
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-base font-medium transition-colors ${
+                className={`text-base font-medium transition-colors whitespace-nowrap ${
                   isDarkNavbar
                     ? isActive(link.path) 
                       ? 'text-white' 
@@ -81,12 +81,16 @@ const Navbar = () => {
                       ? 'text-white' 
                       : 'text-white/80 hover:text-white'
                 }`}
+                style={{
+                  minWidth: 'fit-content',
+                  display: 'inline-block'
+                }}
               >
                 {link.name}
               </Link>
             ))}
             
-            {/* Auth Buttons / User Menu */}
+            {/* Auth Buttons / User Menu - Fixed Width */}
             {user ? (
               <div className="relative">
                 <button
@@ -96,6 +100,10 @@ const Navbar = () => {
                       ? 'bg-gray-500 hover:bg-gray-400'
                       : 'bg-white/10 hover:bg-white/20'
                   }`}
+                  style={{
+                    minWidth: '120px',
+                    justifyContent: 'center'
+                  }}
                 >
                   <User className={`h-5 w-5 ${isDarkNavbar ? 'text-white' : 'text-white'}`} />
                   <span className={`font-medium ${isDarkNavbar ? 'text-white' : 'text-white'}`}>{user.fullName?.split(' ')[0]}</span>
@@ -138,6 +146,10 @@ const Navbar = () => {
                       ? 'text-gray-100 hover:text-white'
                       : 'text-white/80 hover:text-white'
                   }`}
+                  style={{
+                    minWidth: '50px',
+                    textAlign: 'center'
+                  }}
                 >
                   Login
                 </Link>
@@ -148,6 +160,10 @@ const Navbar = () => {
                       ? 'bg-blue-600 text-white hover:bg-blue-700'
                       : 'bg-white text-gray-900 hover:bg-gray-100'
                   }`}
+                  style={{
+                    minWidth: '100px',
+                    textAlign: 'center'
+                  }}
                 >
                   Sign Up
                 </Link>
