@@ -375,87 +375,7 @@ const AIRealEstateAgent = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [phoneSubmitted, setPhoneSubmitted] = useState(false)
   const [error, setError] = useState(null)
-  const [particles, setParticles] = useState([])
 
-  // Initialize particles with dynamic positions
-  useEffect(() => {
-    const initializeParticles = () => {
-      const newParticles = []
-      
-      // Small floating particles
-      for (let i = 0; i < 25; i++) {
-        newParticles.push({
-          id: `small-${i}`,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 8 + 4,
-          speedX: (Math.random() - 0.5) * 0.5,
-          speedY: (Math.random() - 0.5) * 0.3,
-          glowIntensity: Math.random() * 20 + 10,
-          type: 'small'
-        })
-      }
-      
-      // Large glowing orbs
-      for (let i = 0; i < 8; i++) {
-        newParticles.push({
-          id: `large-${i}`,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 20 + 15,
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.2,
-          glowIntensity: Math.random() * 40 + 30,
-          type: 'large'
-        })
-      }
-      
-      // Medium floating particles
-      for (let i = 0; i < 15; i++) {
-        newParticles.push({
-          id: `medium-${i}`,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 6 + 3,
-          speedX: (Math.random() - 0.5) * 0.4,
-          speedY: (Math.random() - 0.5) * 0.25,
-          glowIntensity: Math.random() * 15 + 10,
-          type: 'medium'
-        })
-      }
-      
-      setParticles(newParticles)
-    }
-
-    initializeParticles()
-  }, [])
-
-  // Animate particles continuously
-  useEffect(() => {
-    const animateParticles = () => {
-      setParticles(prevParticles => 
-        prevParticles.map(particle => {
-          let newX = particle.x + particle.speedX
-          let newY = particle.y + particle.speedY
-
-          // Wrap around screen edges
-          if (newX > 100) newX = -5
-          if (newX < -5) newX = 100
-          if (newY > 100) newY = -5
-          if (newY < -5) newY = 100
-
-          return {
-            ...particle,
-            x: newX,
-            y: newY
-          }
-        })
-      )
-    }
-
-    const interval = setInterval(animateParticles, 50) // Update every 50ms for smooth animation
-    return () => clearInterval(interval)
-  }, [particles.length])
 
   const PHONE_WEBHOOK_URL = 'https://n8n.srv967587.hstgr.cloud/webhook/08a7035b-899f-47d9-b70e-88d39a020393'
 
@@ -526,53 +446,30 @@ const AIRealEstateAgent = () => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* Dynamic Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particles.map((particle) => (
+      {/* Enhanced Golden Particles - Same as Hero Section */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
+        {[...Array(25)].map((_, i) => (
           <div
-            key={particle.id}
-            className="absolute rounded-full transition-all duration-75 ease-linear"
+            key={i}
+            className="absolute rounded-full"
             style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              background: particle.type === 'large' 
-                ? 'radial-gradient(circle, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.6), rgba(255, 140, 0, 0.3), transparent)'
-                : particle.type === 'medium'
-                ? 'radial-gradient(circle, rgba(255, 215, 0, 0.8), rgba(255, 165, 0, 0.5), transparent)'
-                : 'radial-gradient(circle, #FFD700, #FFA500)',
-              boxShadow: particle.type === 'large'
-                ? `
-                    0 0 ${particle.glowIntensity}px rgba(255, 215, 0, 0.9),
-                    0 0 ${particle.glowIntensity * 2}px rgba(255, 165, 0, 0.7),
-                    0 0 ${particle.glowIntensity * 3}px rgba(255, 140, 0, 0.5)
-                  `
-                : `
-                    0 0 ${particle.glowIntensity}px #FFD700,
-                    0 0 ${particle.glowIntensity * 2}px #FFA500,
-                    0 0 ${particle.glowIntensity * 3}px #FF8C00
-                  `,
-              animation: `pulse 2s infinite ease-in-out`,
-              animationDelay: `${Math.random() * 2}s`
+              width: `${3 + Math.random() * 4}px`, // 3-7px size range
+              height: `${3 + Math.random() * 4}px`,
+              left: `${Math.random() * 100}%`,
+              bottom: '-10px',
+              backgroundColor: '#fbbf24',
+              boxShadow: '0 0 8px #fbbf24, 0 0 16px rgba(251, 191, 36, 0.4)',
+              opacity: '0.6',
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+              animation: 'floatUp linear infinite',
+              willChange: 'transform',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
             }}
           />
         ))}
       </div>
-
-      {/* Simple CSS Animations for Dynamic Particles */}
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% { 
-            transform: scale(1);
-            opacity: 0.8;
-          }
-          50% { 
-            transform: scale(1.2);
-            opacity: 1;
-          }
-        }
-      `}</style>
       {/* Main Container Box - Mobile Responsive */}
       <div className="w-full max-w-7xl min-h-[600px] lg:h-[800px] bg-black/20 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-white/10">
         {/* Left Section - Agent Profile - Mobile Responsive */}
