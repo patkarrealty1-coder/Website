@@ -285,13 +285,7 @@ const SearchSection = () => {
                   </button>
                 </div>
 
-                {/* Powered by Cities Link */}
-                <div className="mb-6">
-                  <button className="text-cyan-400 text-sm font-medium hover:text-cyan-300 transition-colors inline-flex items-center gap-2 bg-cyan-400/20 px-4 py-2 rounded-lg">
-                    <span>🏙️</span>
-                    <span>Powered by Cities</span>
-                  </button>
-                </div>
+
 
                 {/* Stats Cards - At Bottom of Search Card */}
                 <div 
