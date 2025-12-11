@@ -141,6 +141,22 @@ const SearchSection = () => {
                         color: 'black', 
                         backgroundColor: 'white'
                       }}>Kalyan</option>
+                      <option value="andheri-west" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Andheri West</option>
+                      <option value="andheri-east" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Andheri East</option>
+                      <option value="dahisar-west" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Dahisar West</option>
+                      <option value="dahisar-east" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Dahisar East</option>
                     </select>
                     <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black pointer-events-none" />
                   </div>
