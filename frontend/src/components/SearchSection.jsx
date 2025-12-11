@@ -17,7 +17,7 @@ const SearchSection = () => {
     setPropertyCategory('')
   }, [activeTab])
 
-  const tabs = ['Residential Buy', 'Residential Rent', 'Commercial Buy', 'Commercial Rent']
+  const tabs = ['Residential Buy', 'Residential Rent', 'Commercial Buy', 'Commercial Rent', 'For Investors']
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -28,7 +28,9 @@ const SearchSection = () => {
       bedrooms
     })
     
-    if (activeTab.includes('Residential')) {
+    if (activeTab === 'For Investors') {
+      window.location.href = `/investors?${params.toString()}`
+    } else if (activeTab.includes('Residential')) {
       window.location.href = `/residential?${params.toString()}`
     } else {
       window.location.href = `/commercial?${params.toString()}`
@@ -159,7 +161,30 @@ const SearchSection = () => {
                         backgroundColor: '#3B82F6',
                         fontWeight: 'bold'
                       }}>Property Type</option>
-                      {activeTab.includes('Residential') ? (
+                      {activeTab === 'For Investors' ? (
+                        <>
+                          <option value="high-yield-residential" style={{ 
+                            color: 'black', 
+                            backgroundColor: 'white'
+                          }}>High-Yield Residential</option>
+                          <option value="commercial-investment" style={{ 
+                            color: 'black', 
+                            backgroundColor: 'white'
+                          }}>Commercial Investment</option>
+                          <option value="rental-properties" style={{ 
+                            color: 'black', 
+                            backgroundColor: 'white'
+                          }}>Rental Properties</option>
+                          <option value="development-land" style={{ 
+                            color: 'black', 
+                            backgroundColor: 'white'
+                          }}>Development Land</option>
+                          <option value="reit-properties" style={{ 
+                            color: 'black', 
+                            backgroundColor: 'white'
+                          }}>REIT Properties</option>
+                        </>
+                      ) : activeTab.includes('Residential') ? (
                         <>
                           <option value="apartment" style={{ 
                             color: 'black', 
