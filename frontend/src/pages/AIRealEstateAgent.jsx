@@ -134,14 +134,14 @@ const ChatBot = () => {
   const styles = {
     chatSection: {
       background: "#111",
-      padding: 16,
+      padding: 12,
       borderRadius: 12,
       width: "100%",
       height: "100%",
       color: "#fff",
       display: "flex",
       flexDirection: "column",
-      gap: 10,
+      gap: 8,
       boxSizing: "border-box",
       margin: 0,
     },
@@ -159,21 +159,21 @@ const ChatBot = () => {
     },
     divider: {
       borderBottom: "1px solid #333",
-      marginBottom: 6,
+      marginBottom: 4,
     },
     chatBox: {
       background: "#1a1a1a",
       borderRadius: 12,
-      padding: 12,
-      height: "300px", // Fixed height for mobile
-      minHeight: "300px",
-      maxHeight: "450px",
+      padding: 8,
+      height: "350px", // Increased height for mobile
+      minHeight: "350px",
+      maxHeight: "500px",
       overflowY: "auto",
       display: "flex",
       flexDirection: "column",
       flex: 1,
       "@media (min-width: 1024px)": {
-        height: 450
+        height: 500
       }
     },
     startMessageContainer: {
@@ -211,8 +211,8 @@ const ChatBot = () => {
     },
     inputBar: {
       display: "flex",
-      marginTop: 8,
-      gap: 6,
+      marginTop: 6,
+      gap: 8,
     },
     input: {
       flex: 1,
@@ -271,7 +271,7 @@ const ChatBot = () => {
         /* Mobile-specific styles */
         @media (max-width: 1023px) {
           .chat-container {
-            height: 300px !important;
+            height: 350px !important;
           }
           .chat-input {
             font-size: 16px !important; /* Prevent zoom on iOS */
@@ -280,6 +280,13 @@ const ChatBot = () => {
           .chat-button {
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+          }
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+          .chat-container {
+            height: 500px !important;
           }
         }
       `}</style>
@@ -649,7 +656,7 @@ const AIRealEstateAgent = () => {
         </div>
 
         {/* Right Section - Chat Interface - Mobile Responsive */}
-        <div className="flex-1 bg-black/30 backdrop-blur-sm p-2 lg:p-4 min-h-[400px] lg:min-h-0">
+        <div className="flex-1 bg-black/30 backdrop-blur-sm p-3 lg:p-6 min-h-[450px] lg:min-h-0">
           <ChatBot />
         </div>
       </div>
