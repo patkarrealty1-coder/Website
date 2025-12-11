@@ -33,7 +33,6 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Residential Properties', path: '/residential' },
     { name: 'Commercial Properties', path: '/commercial' },
-    { name: 'Completed Projects', path: '/completed-projects' },
     { name: 'Ongoing Projects', path: '/ongoing-projects' },
     { name: 'Your AI Real Estate Agent', path: '/ai-agent' },
     { name: 'Blog', path: '/blog' },
