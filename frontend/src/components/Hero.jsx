@@ -170,20 +170,21 @@ const Hero = ({ onExploreClick }) => {
         </div>
       </div>
 
-      {/* Animated Particles - Optimized and Hidden when scrolling */}
+      {/* Enhanced Golden Particles - Larger and More Visible */}
       {scrollY < 50 && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
-          {[...Array(30)].map((_, i) => (
+          {[...Array(25)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full opacity-30"
+              className="absolute rounded-full"
               style={{
-                width: '2px',
-                height: '2px',
+                width: `${3 + Math.random() * 4}px`, // 3-7px size range (50-100% larger)
+                height: `${3 + Math.random() * 4}px`,
                 left: `${Math.random() * 100}%`,
                 bottom: '-10px',
                 backgroundColor: '#fbbf24',
-                boxShadow: '0 0 3px #fbbf24',
+                boxShadow: '0 0 8px #fbbf24, 0 0 16px rgba(251, 191, 36, 0.4)',
+                opacity: '0.6', // Increased opacity for better visibility
                 animationDelay: `${Math.random() * 10}s`,
                 animationDuration: `${8 + Math.random() * 4}s`,
                 animation: 'floatUp linear infinite',
