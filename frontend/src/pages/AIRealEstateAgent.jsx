@@ -165,11 +165,16 @@ const ChatBot = () => {
       background: "#1a1a1a",
       borderRadius: 12,
       padding: 12,
-      height: 450,
+      height: "300px", // Fixed height for mobile
+      minHeight: "300px",
+      maxHeight: "450px",
       overflowY: "auto",
       display: "flex",
       flexDirection: "column",
       flex: 1,
+      "@media (min-width: 1024px)": {
+        height: 450
+      }
     },
     startMessageContainer: {
       display: "flex",
@@ -211,23 +216,29 @@ const ChatBot = () => {
     },
     input: {
       flex: 1,
-      padding: "10px 14px",
+      padding: "12px 16px", // Increased padding for mobile touch
       borderRadius: 20,
       border: "none",
       outline: "none",
       background: "#222",
       color: "#fff",
-      fontSize: "0.95rem",
+      fontSize: "16px", // Prevent zoom on iOS
+      minHeight: "44px", // iOS touch target minimum
     },
     sendBtn: {
       background: "#c0c5ce",
       border: "none",
       borderRadius: "50%",
-      width: 42,
-      height: 42,
+      width: 44, // Increased for better mobile touch
+      height: 44,
+      minWidth: 44,
+      minHeight: 44,
       color: "#000",
       cursor: "pointer",
       fontSize: "1.1rem",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
     dot: {
       width: 8,
@@ -256,13 +267,28 @@ const ChatBot = () => {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }
         }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 1023px) {
+          .chat-container {
+            height: 300px !important;
+          }
+          .chat-input {
+            font-size: 16px !important; /* Prevent zoom on iOS */
+            -webkit-appearance: none;
+          }
+          .chat-button {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+          }
+        }
       `}</style>
       {/* Title */}
       <div style={styles.heading}>Real Estate & Property Investment</div>
       <div style={styles.subHeading}>🏠 What's on your mind regarding Real Estate & Property Investment?</div>
       <div style={styles.divider} />
       {/* Chat Area */}
-      <div style={styles.chatBox}>
+      <div style={styles.chatBox} className="chat-container">
         {messages.length === 0 ? (
           <div style={styles.startMessageContainer}>
             <div style={styles.startMessage}>Start the conversation with our Sara</div>
@@ -320,6 +346,7 @@ const ChatBot = () => {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask anything about Real Estate & Property Investment..."
           style={{ ...styles.input, outline: "none" }}
+          className="chat-input"
           onKeyDown={handleKeyDown}
           disabled={isTyping || isShowingTypingEffect}
         />
@@ -327,6 +354,7 @@ const ChatBot = () => {
           onClick={handleSend}
           onMouseDown={(e) => e.preventDefault()}
           style={styles.sendBtn}
+          className="chat-button"
           disabled={isTyping || isShowingTypingEffect}
         >
           ➤
@@ -483,7 +511,7 @@ const AIRealEstateAgent = () => {
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-center p-8 pt-32 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center p-2 lg:p-8 pt-24 lg:pt-32 relative overflow-hidden"
       style={{
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/images/Section%202.png")',
         backgroundSize: 'cover',
@@ -538,13 +566,13 @@ const AIRealEstateAgent = () => {
           }
         }
       `}</style>
-      {/* Main Container Box */}
-      <div className="w-full max-w-7xl h-[800px] bg-black/20 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden flex border border-white/10">
-        {/* Left Section - Agent Profile */}
-        <div className="w-96 bg-black/30 backdrop-blur-sm flex flex-col p-8">
-          {/* Agent Image */}
-          <div className="relative mb-6 flex justify-center">
-            <div className="w-64 h-64 relative">
+      {/* Main Container Box - Mobile Responsive */}
+      <div className="w-full max-w-7xl min-h-[600px] lg:h-[800px] bg-black/20 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-white/10">
+        {/* Left Section - Agent Profile - Mobile Responsive */}
+        <div className="w-full lg:w-96 bg-black/30 backdrop-blur-sm flex flex-col p-4 lg:p-8">
+          {/* Agent Image - Mobile Responsive */}
+          <div className="relative mb-4 lg:mb-6 flex justify-center">
+            <div className="w-32 h-32 lg:w-64 lg:h-64 relative">
               <div className="w-full h-full rounded-full overflow-hidden border-4 border-cyan-400 shadow-2xl shadow-cyan-400/30">
                 <img 
                   src="/images/Saraa.png" 
@@ -620,8 +648,8 @@ const AIRealEstateAgent = () => {
           </div>
         </div>
 
-        {/* Right Section - Chat Interface */}
-        <div className="flex-1 bg-black/30 backdrop-blur-sm p-4">
+        {/* Right Section - Chat Interface - Mobile Responsive */}
+        <div className="flex-1 bg-black/30 backdrop-blur-sm p-2 lg:p-4 min-h-[400px] lg:min-h-0">
           <ChatBot />
         </div>
       </div>
