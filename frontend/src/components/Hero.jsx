@@ -28,13 +28,19 @@ const AnimatedText = () => {
   
   return (
     <div className="relative w-full flex items-center justify-center">
-      <div className="w-full flex items-center justify-center">
-        <div className="text-center whitespace-pre-line leading-tight mx-auto">
+      <div className="w-full max-w-4xl mx-auto px-4">
+        <div className="text-center whitespace-pre-line leading-tight">
           <span 
             className={`inline-block transition-all duration-500 ease-in-out ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
-            style={{ fontFamily: "'Inter', 'Poppins', sans-serif" }}
+            style={{ 
+              fontFamily: "'Inter', 'Poppins', sans-serif",
+              minHeight: '180px', // Fixed height to prevent layout shift
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
           >
             {texts[currentPhase]}
           </span>
@@ -81,81 +87,90 @@ const Hero = ({ onExploreClick }) => {
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
       
-      {/* Content */}
-      <div 
-        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center justify-center min-h-screen"
-        style={{ 
-          transform: `translateY(${scrollY * 0.3}px)`,
-          fontFamily: "'Inter', 'Poppins', 'DM Sans', sans-serif"
-        }}
-      >
-        {/* Headline */}
-        <h1 
-          className={`font-bold text-white text-center leading-[1.15] mb-5 sm:mb-6 md:mb-7 transition-all duration-700 ease-out ${
-            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-          style={{
-            fontSize: 'clamp(2.25rem, 6vw, 4rem)',
-            letterSpacing: '-0.025em',
-            maxWidth: '90%',
-            margin: '0 auto'
+      {/* Content Container - Fixed Layout */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div 
+          className="flex flex-col items-center justify-center min-h-screen text-center py-20"
+          style={{ 
+            transform: `translateY(${scrollY * 0.3}px)`,
+            fontFamily: "'Inter', 'Poppins', 'DM Sans', sans-serif"
           }}
         >
-          <AnimatedText />
-        </h1>
-        
-        {/* Subline */}
-        <p 
-          className={`text-white/75 text-xs sm:text-sm text-center mb-10 sm:mb-12 md:mb-14 max-w-lg mx-auto px-2 transition-all duration-700 ease-out delay-150 ${
-            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-          style={{
-            lineHeight: '1.6',
-            fontWeight: '300'
-          }}
-        >
-          Your trusted real estate agency for luxury homes, offering personalized service and exquisite properties.
-        </p>
-        
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 px-4 max-w-2xl mx-auto w-full">
-          <Link
-            to="/contact"
-            className={`inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-all duration-400 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full sm:w-auto sm:min-w-[200px] backdrop-blur-sm delay-300 ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            Book a Free Consultation
-          </Link>
+          {/* Headline Container - Fixed Boundary */}
+          <div className="w-full max-w-4xl mx-auto mb-8">
+            <h1 
+              className={`font-bold text-white text-center leading-[1.15] transition-all duration-700 ease-out ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{
+                fontSize: 'clamp(2.25rem, 5.5vw, 3.75rem)',
+                letterSpacing: '-0.025em'
+              }}
+            >
+              <AnimatedText />
+            </h1>
+          </div>
           
-          <button
-            onClick={onExploreClick}
-            className={`inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-all duration-400 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full sm:w-auto sm:min-w-[200px] backdrop-blur-sm delay-400 ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
-          >
-            <span>Explore Properties</span>
-            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
-          </button>
+          {/* Subline Container - Fixed Position */}
+          <div className="w-full max-w-2xl mx-auto mb-12">
+            <p 
+              className={`text-white/75 text-sm sm:text-base text-center px-4 transition-all duration-700 ease-out delay-150 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{
+                lineHeight: '1.6',
+                fontWeight: '300',
+                minHeight: '48px' // Fixed height to prevent shift
+              }}
+            >
+              Your trusted real estate agency for luxury homes, offering personalized service and exquisite properties.
+            </p>
+          </div>
+          
+          {/* Buttons Container - Fixed Position */}
+          <div className="w-full max-w-2xl mx-auto">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 px-4">
+              <Link
+                to="/contact"
+                className={`inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full sm:w-auto sm:min-w-[220px] backdrop-blur-sm ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: '300ms' }}
+              >
+                Book a Free Consultation
+              </Link>
+              
+              <button
+                onClick={onExploreClick}
+                className={`inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full sm:w-auto sm:min-w-[220px] backdrop-blur-sm ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: '400ms' }}
+              >
+                <span>Explore Properties</span>
+                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Animated Particles - Hidden when scrolling */}
+      {/* Animated Particles - Optimized and Hidden when scrolling */}
       {scrollY < 50 && (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-          {[...Array(60)].map((_, i) => (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
+          {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full opacity-50"
+              className="absolute rounded-full opacity-30"
               style={{
-                width: '1px',
-                height: '1px',
+                width: '2px',
+                height: '2px',
                 left: `${Math.random() * 100}%`,
                 bottom: '-10px',
                 backgroundColor: '#fbbf24',
-                boxShadow: '0 0 4px #fbbf24, 0 0 8px #fbbf24',
-                animationDelay: `${Math.random() * 8}s`,
-                animationDuration: `${7.5 + Math.random() * 5}s`,
+                boxShadow: '0 0 3px #fbbf24',
+                animationDelay: `${Math.random() * 10}s`,
+                animationDuration: `${8 + Math.random() * 4}s`,
                 animation: 'floatUp linear infinite',
                 willChange: 'transform',
                 backfaceVisibility: 'hidden',
