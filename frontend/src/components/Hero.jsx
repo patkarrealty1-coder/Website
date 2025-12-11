@@ -28,7 +28,8 @@ const AnimatedText = () => {
   
   return (
     <div className="relative w-full flex items-center justify-center">
-      <div className="w-full max-w-4xl mx-auto px-4">
+      {/* Invisible rectangular boundary container */}
+      <div className="w-full max-w-4xl mx-auto px-4" style={{ maxWidth: '950px' }}>
         <div className="text-center whitespace-pre-line leading-tight">
           <span 
             className={`inline-block transition-all duration-500 ease-in-out ${
@@ -39,7 +40,9 @@ const AnimatedText = () => {
               minHeight: '180px', // Fixed height to prevent layout shift
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              maxWidth: '100%', // Ensures text stays within boundary
+              textAlign: 'center'
             }}
           >
             {texts[currentPhase]}
