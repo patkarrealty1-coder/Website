@@ -52,18 +52,12 @@ const Navbar = () => {
   }
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isDarkNavbar
-        ? 'bg-gradient-to-b from-gray-600 to-gray-500 shadow-lg'
-        : isScrolled 
-          ? 'bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-lg' 
-          : 'bg-transparent'
-    }`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 shadow-lg transition-all duration-300" style={{ backgroundColor: '#001F54' }}>
       <div className="w-full px-6 sm:px-12 lg:px-16">
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <span className={`text-3xl font-bold ${isDarkNavbar ? 'text-white' : 'text-white'}`}>Patkar's Realty</span>
+            <span className="text-3xl font-bold" style={{ color: '#D4AF37' }}>Patkar's Realty</span>
           </Link>
 
           {/* Desktop Navigation - Fixed Positioning */}
@@ -72,18 +66,11 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-base font-medium transition-colors whitespace-nowrap ${
-                  isDarkNavbar
-                    ? isActive(link.path) 
-                      ? 'text-white' 
-                      : 'text-gray-100 hover:text-white'
-                    : isActive(link.path) 
-                      ? 'text-white' 
-                      : 'text-white/80 hover:text-white'
-                }`}
+                className="text-base font-medium transition-colors whitespace-nowrap hover:opacity-80"
                 style={{
                   minWidth: 'fit-content',
-                  display: 'inline-block'
+                  display: 'inline-block',
+                  color: isActive(link.path) ? '#D4AF37' : '#808080'
                 }}
               >
                 {link.name}
@@ -95,18 +82,15 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                    isDarkNavbar
-                      ? 'bg-gray-500 hover:bg-gray-400'
-                      : 'bg-white/10 hover:bg-white/20'
-                  }`}
+                  className="flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors hover:bg-blue-800"
                   style={{
                     minWidth: '120px',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(0, 31, 84, 0.8)'
                   }}
                 >
-                  <User className={`h-5 w-5 ${isDarkNavbar ? 'text-white' : 'text-white'}`} />
-                  <span className={`font-medium ${isDarkNavbar ? 'text-white' : 'text-white'}`}>{user.fullName?.split(' ')[0]}</span>
+                  <User className="h-5 w-5" style={{ color: '#D4AF37' }} />
+                  <span className="font-medium" style={{ color: '#D4AF37' }}>{user.fullName?.split(' ')[0]}</span>
                 </button>
                 
                 {showUserMenu && (
@@ -141,28 +125,23 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <Link
                   to="/login"
-                  className={`font-medium transition-colors ${
-                    isDarkNavbar
-                      ? 'text-gray-100 hover:text-white'
-                      : 'text-white/80 hover:text-white'
-                  }`}
+                  className="font-medium transition-colors hover:opacity-80"
                   style={{
                     minWidth: '50px',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    color: '#808080'
                   }}
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className={`px-6 py-2 rounded-lg font-medium transition-colors ${
-                    isDarkNavbar
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-white text-gray-900 hover:bg-gray-100'
-                  }`}
+                  className="px-6 py-2 rounded-lg font-medium transition-colors hover:opacity-90"
                   style={{
                     minWidth: '100px',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    backgroundColor: '#D4AF37',
+                    color: '#001F54'
                   }}
                 >
                   Sign Up
@@ -175,15 +154,11 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-3 rounded-lg transition-colors ${
-                isDarkNavbar
-                  ? 'hover:bg-gray-500'
-                  : 'hover:bg-white/10'
-              }`}
+              className="p-3 rounded-lg transition-colors hover:bg-blue-800"
             >
               {isOpen ? 
-                <X className={`h-7 w-7 ${isDarkNavbar ? 'text-white' : 'text-white'}`} /> : 
-                <Menu className={`h-7 w-7 ${isDarkNavbar ? 'text-white' : 'text-white'}`} />
+                <X className="h-7 w-7" style={{ color: '#D4AF37' }} /> : 
+                <Menu className="h-7 w-7" style={{ color: '#D4AF37' }} />
               }
             </button>
           </div>
@@ -191,18 +166,18 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2">
+          <div className="md:hidden rounded-lg mt-2" style={{ backgroundColor: '#001F54' }}>
             <div className="py-4 space-y-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-3 text-base font-medium transition-colors ${
-                    isActive(link.path)
-                      ? 'text-gray-900 bg-gray-50'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                  }`}
+                  className="block px-4 py-3 text-base font-medium transition-colors hover:bg-blue-800"
+                  style={{ 
+                    color: isActive(link.path) ? '#D4AF37' : '#808080',
+                    backgroundColor: isActive(link.path) ? 'rgba(0, 31, 84, 0.8)' : 'transparent'
+                  }}
                 >
                   {link.name}
                 </Link>
@@ -212,13 +187,14 @@ const Navbar = () => {
               <div className="border-t border-gray-200 mt-2 pt-2">
                 {user ? (
                   <>
-                    <div className="px-4 py-2 text-sm text-gray-500">
-                      Signed in as <span className="font-medium text-gray-900">{user.fullName}</span>
+                    <div className="px-4 py-2 text-sm" style={{ color: '#808080' }}>
+                      Signed in as <span className="font-medium" style={{ color: '#D4AF37' }}>{user.fullName}</span>
                     </div>
                     <Link
                       to="/wishlist"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      className="flex items-center space-x-2 px-4 py-3 transition-colors hover:bg-blue-800"
+                      style={{ color: '#808080' }}
                     >
                       <Heart className="h-4 w-4" />
                       <span>Wishlist</span>
@@ -226,14 +202,15 @@ const Navbar = () => {
                     <Link
                       to="/profile"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center space-x-2 px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      className="flex items-center space-x-2 px-4 py-3 transition-colors hover:bg-blue-800"
+                      style={{ color: '#808080' }}
                     >
                       <User className="h-4 w-4" />
                       <span>Profile</span>
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="flex items-center space-x-2 w-full px-4 py-3 text-red-600 hover:bg-red-50"
+                      className="flex items-center space-x-2 w-full px-4 py-3 text-red-400 hover:bg-blue-800 transition-colors"
                     >
                       <LogOut className="h-4 w-4" />
                       <span>Logout</span>
@@ -244,14 +221,16 @@ const Navbar = () => {
                     <Link
                       to="/login"
                       onClick={() => setIsOpen(false)}
-                      className="block px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      className="block px-4 py-3 transition-colors hover:bg-blue-800"
+                      style={{ color: '#808080' }}
                     >
                       Login
                     </Link>
                     <Link
                       to="/register"
                       onClick={() => setIsOpen(false)}
-                      className="block px-4 py-3 text-blue-600 font-medium hover:bg-blue-50"
+                      className="block px-4 py-3 font-medium transition-colors hover:bg-blue-800"
+                      style={{ color: '#D4AF37' }}
                     >
                       Sign Up
                     </Link>
