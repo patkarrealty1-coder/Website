@@ -117,30 +117,6 @@ const SearchSection = () => {
                         backgroundColor: '#3B82F6',
                         fontWeight: 'bold'
                       }}>Location</option>
-                      <option value="thane-west" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Thane West</option>
-                      <option value="thane-east" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Thane East</option>
-                      <option value="mumbra" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Mumbra</option>
-                      <option value="kalwa" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Kalwa</option>
-                      <option value="dombivli" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Dombivli</option>
-                      <option value="kalyan" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Kalyan</option>
                       <option value="andheri-west" style={{ 
                         color: 'black', 
                         backgroundColor: 'white'
@@ -149,6 +125,42 @@ const SearchSection = () => {
                         color: 'black', 
                         backgroundColor: 'white'
                       }}>Andheri East</option>
+                      <option value="goregaon-west" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Goregaon West</option>
+                      <option value="goregaon-east" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Goregaon East</option>
+                      <option value="malad-west" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Malad West</option>
+                      <option value="malad-east" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Malad East</option>
+                      <option value="kandivali-west" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Kandivali West</option>
+                      <option value="kandivali-east" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Kandivali East</option>
+                      <option value="charkop" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Charkop</option>
+                      <option value="borivali-west" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Borivali West</option>
+                      <option value="borivali-east" style={{ 
+                        color: 'black', 
+                        backgroundColor: 'white'
+                      }}>Borivali East</option>
                       <option value="dahisar-west" style={{ 
                         color: 'black', 
                         backgroundColor: 'white'
