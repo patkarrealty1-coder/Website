@@ -7,9 +7,9 @@ const AnimatedText = () => {
   const [isVisible, setIsVisible] = useState(true)
   
   const texts = [
-    "What If Expert\nGuidance Cost You\nNothing?",
-    "Why Navigate Alone\nWhen Expertise Is Free?",
-    "Your Dream Home\nAwaits Discovery"
+    "Your Lifetime Savings.\nYour Family's Happiness.\nToo Important to Navigate Alone.",
+    "30+ Years Securing\nBuilder-Exclusive Rates\nAnd Complete Legal Safety",
+    "MahaRERA Certified.\nZero Buyer Commission.\nYour Trust, Our Priority."
   ]
   
   useEffect(() => {
@@ -126,45 +126,60 @@ const Hero = ({ onExploreClick }) => {
                 minHeight: '48px' // Fixed height to prevent shift
               }}
             >
-              Your trusted real estate agency for luxury homes, offering personalized service and exquisite properties.
+              30+ years securing builder-exclusive rates and complete legal safety—matching Mumbai families with dream homes. MahaRERA certified. Zero buyer commission.
             </p>
           </div>
           
-          {/* Buttons Container - Fixed Position and Size */}
-          <div className="w-full max-w-2xl mx-auto">
+          {/* Buttons Container - Buy, Rent, Book Consultation */}
+          <div className="w-full max-w-3xl mx-auto">
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 px-4">
               <Link
-                to="/contact"
-                className={`inline-flex items-center justify-center bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-colors duration-300 shadow-lg backdrop-blur-sm ${
+                to="/buy"
+                className={`inline-flex items-center justify-center bg-yellow-500 text-gray-900 text-sm sm:text-base font-semibold rounded-lg hover:bg-yellow-400 transition-colors duration-300 shadow-lg ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ 
                   transitionDelay: '300ms',
                   width: '100%',
-                  maxWidth: '280px',
-                  height: '56px',
-                  minHeight: '56px'
+                  maxWidth: '180px',
+                  height: '52px',
+                  minHeight: '52px'
                 }}
               >
-                Book a Free Consultation
+                Buy
               </Link>
               
-              <button
-                onClick={onExploreClick}
-                className={`inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white hover:shadow-white/20 transition-colors duration-300 shadow-lg backdrop-blur-sm ${
+              <Link
+                to="/rent"
+                className={`inline-flex items-center justify-center bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white transition-colors duration-300 shadow-lg backdrop-blur-sm ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ 
                   transitionDelay: '400ms',
                   width: '100%',
-                  maxWidth: '280px',
-                  height: '56px',
-                  minHeight: '56px'
+                  maxWidth: '180px',
+                  height: '52px',
+                  minHeight: '52px'
                 }}
               >
-                <span>Explore Properties</span>
-                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
-              </button>
+                Rent
+              </Link>
+
+              <Link
+                to="/contact"
+                className={`inline-flex items-center justify-center bg-transparent border-2 border-yellow-500 text-yellow-500 text-sm sm:text-base font-semibold rounded-lg hover:bg-yellow-500 hover:text-gray-900 transition-colors duration-300 shadow-lg ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ 
+                  transitionDelay: '500ms',
+                  width: '100%',
+                  maxWidth: '220px',
+                  height: '52px',
+                  minHeight: '52px'
+                }}
+              >
+                Book Consultation
+              </Link>
             </div>
           </div>
         </div>

@@ -32,6 +32,7 @@ import OngoingProjects from './pages/OngoingProjects'
 import AdminOngoingProjects from './pages/AdminOngoingProjects'
 import AdminOngoingProjectForm from './pages/AdminOngoingProjectForm'
 import SmoothScroll from './components/SmoothScroll'
+import About from './pages/About'
 
 function AppContent() {
   const location = useLocation()
@@ -164,6 +165,34 @@ function AppContent() {
             <SmoothScroll>
               <main className="flex-grow">
                 <TermsConditions />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/about" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <About />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          {/* Buy and Rent routes - redirect to residential/commercial */}
+          <Route path="/buy" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <ResidentialProperties />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/rent" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <ResidentialProperties />
               </main>
               <Footer />
             </SmoothScroll>
