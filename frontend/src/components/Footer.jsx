@@ -48,15 +48,19 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link to="/" className="text-2xl font-bold" style={{ color: '#D4AF37' }}>
-              Patkar's Realty
+            <Link to="/" className="inline-block">
+              <img 
+                src="/images/Logo.png" 
+                alt="Patkar's Realty" 
+                className="h-28 w-auto"
+              />
             </Link>
             <p className="mt-4 text-gray-400 text-sm">
               30+ years of trust, integrity, and client-first service in Mumbai's western suburbs.
             </p>
             <div className="mt-4 space-y-2">
-              <a href="tel:+919876543210" className="flex items-center gap-2 text-gray-400 hover:text-white text-sm">
-                <Phone className="h-4 w-4" /> +91 98765 43210
+              <a href="tel:+919136097299" className="flex items-center gap-2 text-gray-400 hover:text-white text-sm">
+                <Phone className="h-4 w-4" /> +91 91360 97299
               </a>
               <a href="mailto:info@patkarsrealty.com" className="flex items-center gap-2 text-gray-400 hover:text-white text-sm">
                 <Mail className="h-4 w-4" /> info@patkarsrealty.com

@@ -323,20 +323,20 @@ const SearchSection = () => {
                 >
                   {/* Stats Card 1 */}
                   <div className="bg-black/15 backdrop-blur-sm rounded-xl sm:rounded-2xl px-4 py-3 sm:px-6 sm:py-4 border border-white/10">
-                    <div className="text-xl sm:text-2xl font-bold text-white">500+</div>
+                    <div className="text-xl sm:text-2xl font-bold text-white">120+</div>
                     <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Properties</div>
                   </div>
 
                   {/* Stats Card 2 */}
                   <div className="bg-black/15 backdrop-blur-sm rounded-xl sm:rounded-2xl px-4 py-3 sm:px-6 sm:py-4 border border-white/10">
-                    <div className="text-xl sm:text-2xl font-bold text-white">50+</div>
-                    <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Cities</div>
+                    <div className="text-xl sm:text-2xl font-bold text-white">15+</div>
+                    <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Clients</div>
                   </div>
 
                   {/* Stats Card 3 */}
                   <div className="bg-black/15 backdrop-blur-sm rounded-xl sm:rounded-2xl px-4 py-3 sm:px-6 sm:py-4 border border-white/10">
-                    <div className="text-xl sm:text-2xl font-bold text-white">1000+</div>
-                    <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Happy Clients</div>
+                    <div className="text-xl sm:text-2xl font-bold text-white">145+</div>
+                    <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Client Support</div>
                   </div>
 
                   {/* Stats Card 4 */}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
 
 const AnimatedText = () => {
   const [currentPhase, setCurrentPhase] = useState(0)
@@ -28,25 +27,28 @@ const AnimatedText = () => {
   
   return (
     <div className="relative w-full flex items-center justify-center">
-      {/* Invisible rectangular boundary container */}
-      <div className="w-full max-w-4xl mx-auto px-4" style={{ maxWidth: '950px' }}>
-        <div className="text-center whitespace-pre-line leading-tight">
-          <span 
-            className={`inline-block transition-all duration-500 ease-in-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-            style={{ 
-              fontFamily: "'Inter', 'Poppins', sans-serif",
-              minHeight: '180px', // Fixed height to prevent layout shift
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              maxWidth: '100%', // Ensures text stays within boundary
-              textAlign: 'center'
-            }}
-          >
-            {texts[currentPhase]}
-          </span>
+      {/* Fixed rectangular boundary container */}
+      <div 
+        className="w-full mx-auto px-4"
+        style={{ 
+          maxWidth: '950px',
+          minHeight: '220px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <div 
+          className={`text-center whitespace-pre-line leading-[1.2] transition-all duration-500 ease-in-out ${
+            isVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ 
+            fontFamily: "'Inter', 'Poppins', sans-serif",
+            width: '100%',
+            fontSize: 'inherit'
+          }}
+        >
+          {texts[currentPhase]}
         </div>
       </div>
     </div>
@@ -130,20 +132,21 @@ const Hero = ({ onExploreClick }) => {
             </p>
           </div>
           
-          {/* Buttons Container - Buy, Rent, Book Consultation */}
-          <div className="w-full max-w-3xl mx-auto">
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 px-4">
+          {/* Buttons Container - Fixed Position, No Shifting */}
+          <div className="w-full max-w-3xl mx-auto" style={{ position: 'relative', zIndex: 10 }}>
+            <div 
+              className="flex flex-col sm:flex-row justify-center items-center gap-4 px-4"
+              style={{ minHeight: '60px' }}
+            >
               <Link
                 to="/buy"
-                className={`inline-flex items-center justify-center bg-yellow-500 text-gray-900 text-sm sm:text-base font-semibold rounded-lg hover:bg-yellow-400 transition-colors duration-300 shadow-lg ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+                className="inline-flex items-center justify-center text-sm sm:text-base font-semibold rounded-lg transition-colors duration-300 shadow-lg"
                 style={{ 
-                  transitionDelay: '300ms',
-                  width: '100%',
-                  maxWidth: '180px',
+                  backgroundColor: '#D4AF37',
+                  color: '#001F54',
+                  width: '180px',
                   height: '52px',
-                  minHeight: '52px'
+                  flexShrink: 0
                 }}
               >
                 Buy
@@ -151,15 +154,11 @@ const Hero = ({ onExploreClick }) => {
               
               <Link
                 to="/rent"
-                className={`inline-flex items-center justify-center bg-transparent border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white transition-colors duration-300 shadow-lg backdrop-blur-sm ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+                className="inline-flex items-center justify-center border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white transition-colors duration-300 shadow-lg backdrop-blur-sm"
                 style={{ 
-                  transitionDelay: '400ms',
-                  width: '100%',
-                  maxWidth: '180px',
+                  width: '180px',
                   height: '52px',
-                  minHeight: '52px'
+                  flexShrink: 0
                 }}
               >
                 Rent
@@ -167,15 +166,21 @@ const Hero = ({ onExploreClick }) => {
 
               <Link
                 to="/contact"
-                className={`inline-flex items-center justify-center bg-transparent border-2 border-yellow-500 text-yellow-500 text-sm sm:text-base font-semibold rounded-lg hover:bg-yellow-500 hover:text-gray-900 transition-colors duration-300 shadow-lg ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+                className="inline-flex items-center justify-center border-2 text-sm sm:text-base font-semibold rounded-lg transition-colors duration-300 shadow-lg hover:text-gray-900"
                 style={{ 
-                  transitionDelay: '500ms',
-                  width: '100%',
-                  maxWidth: '220px',
+                  borderColor: '#D4AF37',
+                  color: '#D4AF37',
+                  width: '220px',
                   height: '52px',
-                  minHeight: '52px'
+                  flexShrink: 0
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = '#D4AF37'
+                  e.target.style.color = '#001F54'
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = 'transparent'
+                  e.target.style.color = '#D4AF37'
                 }}
               >
                 Book Consultation
@@ -185,21 +190,21 @@ const Hero = ({ onExploreClick }) => {
         </div>
       </div>
 
-      {/* Enhanced Golden Particles - Larger and More Visible */}
+      {/* Enhanced Golden Particles - Much Larger for Laptop Visibility */}
       {scrollY < 50 && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
-          {[...Array(25)].map((_, i) => (
+          {[...Array(35)].map((_, i) => (
             <div
               key={i}
               className="absolute rounded-full"
               style={{
-                width: `${3 + Math.random() * 4}px`, // 3-7px size range (50-100% larger)
-                height: `${3 + Math.random() * 4}px`,
+                width: `${5 + Math.random() * 6}px`, // 5-11px size range - much larger
+                height: `${5 + Math.random() * 6}px`,
                 left: `${Math.random() * 100}%`,
                 bottom: '-10px',
-                backgroundColor: '#fbbf24',
-                boxShadow: '0 0 8px #fbbf24, 0 0 16px rgba(251, 191, 36, 0.4)',
-                opacity: '0.6', // Increased opacity for better visibility
+                backgroundColor: '#D4AF37', // Champagne gold
+                boxShadow: '0 0 12px #D4AF37, 0 0 24px rgba(212, 175, 55, 0.5)',
+                opacity: '0.75', // Higher opacity for better visibility
                 animationDelay: `${Math.random() * 10}s`,
                 animationDuration: `${8 + Math.random() * 4}s`,
                 animation: 'floatUp linear infinite',

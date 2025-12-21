@@ -36,9 +36,9 @@ const About = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20">
+      <section className="bg-gray-900 text-white py-20 pt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">About Patkar's Realty</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -100,28 +100,28 @@ const About = () => {
       </section>
 
       {/* Founder's Philosophy */}
-      <section className="py-16 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+      <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-8 text-center">The Founder's Philosophy: Client Interest, Always</h2>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 space-y-6">
-            <h3 className="text-xl font-semibold text-yellow-400">The Defining Choice</h3>
-            <p className="text-gray-200">
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 space-y-6 border border-white/10">
+            <h3 className="text-xl font-semibold" style={{ color: '#D4AF37' }}>The Defining Choice</h3>
+            <p className="text-gray-300">
               Early in our journey, a young couple came to us with their entire savings—money they'd accumulated over years of careful planning. They had their hearts set on a property that, frankly, was beyond their comfortable budget.
             </p>
-            <p className="text-gray-200">
+            <p className="text-gray-300">
               The commission on that sale would have been significant. The couple was ready to sign. But we knew the EMI burden would strain their finances for years, leaving no room for emergencies or their children's education.
             </p>
-            <p className="text-gray-200">
+            <p className="text-gray-300">
               We recommended a smaller property in the same area. They were disappointed initially. But three years later, when an unexpected medical emergency arose, they had the savings to handle it without losing their home.
             </p>
-            <p className="text-gray-200">
+            <p className="text-gray-300">
               That couple has since referred over a dozen families to us. Their children bought their first homes through us. That single act of putting their interest first created a relationship spanning decades.
             </p>
-            <h3 className="text-xl font-semibold text-yellow-400 mt-8">Growth Through Trust</h3>
-            <p className="text-gray-200">
+            <h3 className="text-xl font-semibold mt-8" style={{ color: '#D4AF37' }}>Growth Through Trust</h3>
+            <p className="text-gray-300">
               This philosophy has shaped every aspect of our business. We've never advertised aggressively because we've never needed to. Our growth has been organic—one satisfied family telling another.
             </p>
-            <p className="text-gray-200">
+            <p className="text-gray-300">
               Today, when we meet new clients, we often hear: "My parents bought their home through you" or "My colleague said you're the only agent they trust." These introductions carry more weight than any marketing campaign.
             </p>
           </div>
@@ -156,7 +156,7 @@ const About = () => {
               Book Free Consultation
             </Link>
             <a
-              href="tel:+919876543210"
+              href="tel:+919136097299"
               className="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-colors flex items-center justify-center gap-2"
             >
               <Phone className="h-5 w-5" />

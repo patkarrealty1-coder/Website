@@ -27,12 +27,21 @@ import AdminFeaturedProperties from './pages/AdminFeaturedProperties'
 import AIRealEstateAgent from './pages/AIRealEstateAgent'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsConditions from './pages/TermsConditions'
-import CompletedProjects from './pages/CompletedProjects'
 import OngoingProjects from './pages/OngoingProjects'
 import AdminOngoingProjects from './pages/AdminOngoingProjects'
 import AdminOngoingProjectForm from './pages/AdminOngoingProjectForm'
 import SmoothScroll from './components/SmoothScroll'
 import About from './pages/About'
+import BuyersInvestors from './pages/BuyersInvestors'
+import Sellers from './pages/Sellers'
+import Landlords from './pages/Landlords'
+import InvestmentAdvisory from './pages/InvestmentAdvisory'
+import LoanAssistance from './pages/LoanAssistance'
+import LegalDocumentation from './pages/LegalDocumentation'
+import Localities from './pages/Localities'
+import LocalityDetail from './pages/LocalityDetail'
+import FAQ from './pages/FAQ'
+import Testimonials from './pages/Testimonials'
 
 function AppContent() {
   const location = useLocation()
@@ -84,15 +93,6 @@ function AppContent() {
             <SmoothScroll>
               <main className="flex-grow">
                 <Listings />
-              </main>
-              <Footer />
-            </SmoothScroll>
-          } />
-          
-          <Route path="/completed-projects" element={
-            <SmoothScroll>
-              <main className="flex-grow">
-                <CompletedProjects />
               </main>
               <Footer />
             </SmoothScroll>
@@ -174,6 +174,99 @@ function AppContent() {
             <SmoothScroll>
               <main className="flex-grow">
                 <About />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          {/* Service Pages */}
+          <Route path="/services/buyers-investors" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <BuyersInvestors />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/services/sellers" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <Sellers />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/services/landlords" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <Landlords />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/services/investment-advisory" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <InvestmentAdvisory />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/services/loan-assistance" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <LoanAssistance />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/services/legal-documentation" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <LegalDocumentation />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          {/* Locality Pages */}
+          <Route path="/localities" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <Localities />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/localities/:slug" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <LocalityDetail />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          {/* FAQ and Testimonials */}
+          <Route path="/faq" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <FAQ />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          <Route path="/testimonials" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <Testimonials />
               </main>
               <Footer />
             </SmoothScroll>

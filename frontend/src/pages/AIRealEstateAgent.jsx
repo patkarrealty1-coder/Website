@@ -438,7 +438,7 @@ const AIRealEstateAgent = () => {
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-center p-2 lg:p-8 pt-24 lg:pt-32 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center p-2 sm:p-4 lg:p-8 pt-20 sm:pt-24 lg:pt-32 relative overflow-hidden"
       style={{
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("/images/Section%202.png")',
         backgroundSize: 'cover',
@@ -457,8 +457,8 @@ const AIRealEstateAgent = () => {
               height: `${3 + Math.random() * 4}px`,
               left: `${Math.random() * 100}%`,
               bottom: '-10px',
-              backgroundColor: '#fbbf24',
-              boxShadow: '0 0 8px #fbbf24, 0 0 16px rgba(251, 191, 36, 0.4)',
+              backgroundColor: '#D4AF37',
+              boxShadow: '0 0 8px #D4AF37, 0 0 16px rgba(212, 175, 55, 0.4)',
               opacity: '0.6',
               animationDelay: `${Math.random() * 10}s`,
               animationDuration: `${8 + Math.random() * 4}s`,
@@ -470,14 +470,14 @@ const AIRealEstateAgent = () => {
           />
         ))}
       </div>
-      {/* Main Container Box - Mobile Responsive */}
-      <div className="w-full max-w-7xl min-h-[600px] lg:h-[800px] bg-black/20 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-white/10">
-        {/* Left Section - Agent Profile - Mobile Responsive */}
-        <div className="w-full lg:w-96 bg-black/30 backdrop-blur-sm flex flex-col p-4 lg:p-8">
-          {/* Agent Image - Mobile Responsive */}
-          <div className="relative mb-4 lg:mb-6 flex justify-center">
-            <div className="w-32 h-32 lg:w-64 lg:h-64 relative">
-              <div className="w-full h-full rounded-full overflow-hidden border-4 border-cyan-400 shadow-2xl shadow-cyan-400/30">
+      {/* Main Container Box - Mobile First Design */}
+      <div className="w-full max-w-7xl bg-black/20 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-white/10" style={{ minHeight: 'auto' }}>
+        {/* Left Section - Agent Profile - Mobile Optimized */}
+        <div className="w-full lg:w-80 bg-black/30 backdrop-blur-sm flex flex-col p-4 lg:p-6">
+          {/* Agent Image - Smaller on Mobile */}
+          <div className="relative mb-4 flex justify-center">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-48 lg:h-48 relative">
+              <div className="w-full h-full rounded-full overflow-hidden border-3 border-cyan-400 shadow-xl shadow-cyan-400/30">
                 <img 
                   src="/images/Saraa.png" 
                   alt="Sara - AI Real Estate Agent"
@@ -489,71 +489,71 @@ const AIRealEstateAgent = () => {
             </div>
           </div>
 
-          {/* Agent Info */}
-          <div className="text-white mb-8">
-            <div className="space-y-4">
-              <p className="text-gray-300 text-sm leading-relaxed text-center px-4">
-                Your dedicated AI Real Estate Assistant, powered by advanced technology to help you discover the perfect property and lucrative investment opportunities.
+          {/* Agent Info - Condensed for Mobile */}
+          <div className="text-white mb-4 lg:mb-6">
+            <div className="space-y-2 lg:space-y-4">
+              <p className="text-gray-300 text-xs lg:text-sm leading-relaxed text-center px-2">
+                Your AI Real Estate Assistant for property and investment guidance.
               </p>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-4 mt-6 pt-4 border-t border-gray-700">
+              {/* Stats - Hidden on very small screens */}
+              <div className="hidden sm:grid grid-cols-2 gap-2 lg:gap-4 mt-4 pt-3 border-t border-gray-700">
                 <div className="text-center">
-                  <div className="text-cyan-400 font-bold text-lg">500+</div>
-                  <div className="text-gray-400 text-xs">Properties Matched</div>
+                  <div className="text-cyan-400 font-bold text-sm lg:text-lg">500+</div>
+                  <div className="text-gray-400 text-[10px] lg:text-xs">Properties</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-cyan-400 font-bold text-lg">98%</div>
-                  <div className="text-gray-400 text-xs">Client Satisfaction</div>
+                  <div className="text-cyan-400 font-bold text-sm lg:text-lg">98%</div>
+                  <div className="text-gray-400 text-[10px] lg:text-xs">Satisfaction</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Phone Number Form */}
-          <div className="space-y-6 mt-auto">
-            <div className="text-center mb-6">
-              <h3 className="text-white font-bold text-xl mb-3 tracking-wide">Get Personalized Assistance</h3>
-              <p className="text-gray-300 text-sm leading-relaxed px-2">Share your number for exclusive property updates</p>
+          {/* Phone Number Form - Compact */}
+          <div className="space-y-3 lg:space-y-4 mt-auto">
+            <div className="text-center mb-2 lg:mb-4">
+              <h3 className="text-white font-bold text-sm lg:text-lg mb-1 lg:mb-2">Get Personalized Help</h3>
+              <p className="text-gray-300 text-xs hidden sm:block">Share your number for updates</p>
             </div>
             
             {!phoneSubmitted ? (
-              <form onSubmit={handlePhoneSubmit} className="space-y-4">
+              <form onSubmit={handlePhoneSubmit} className="space-y-2 lg:space-y-3">
                 <input
                   type="tel"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="Enter your phone number"
-                  className="w-full px-4 py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:bg-white/25 focus:border-cyan-400"
+                  placeholder="Your phone number"
+                  className="w-full px-3 py-2 lg:px-4 lg:py-3 bg-white/20 backdrop-blur-md border border-white/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 text-sm lg:text-base"
+                  style={{ fontSize: '16px' }}
                   required
                 />
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-black hover:bg-gray-900 text-white rounded-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg border border-gray-700"
+                  className="w-full px-4 py-2 lg:px-6 lg:py-3 bg-black hover:bg-gray-900 text-white rounded-lg font-medium transition-all text-sm lg:text-base border border-gray-700"
                 >
                   Call Me
                 </button>
               </form>
             ) : (
-              <div className="text-center py-4">
-                <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-green-500/20 flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-green-400" />
+              <div className="text-center py-2 lg:py-4">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 mx-auto mb-2 rounded-full bg-green-500/20 flex items-center justify-center">
+                  <Phone className="w-5 h-5 lg:w-6 lg:h-6 text-green-400" />
                 </div>
-                <p className="text-green-400 font-medium">Thank you!</p>
-                <p className="text-gray-400 text-sm mt-1">We'll send you exclusive property updates</p>
+                <p className="text-green-400 font-medium text-sm">Thank you!</p>
               </div>
             )}
             
             {error && (
-              <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
-                <p className="text-red-400 text-sm">{error}</p>
+              <div className="p-2 bg-red-500/20 border border-red-500/30 rounded-lg">
+                <p className="text-red-400 text-xs">{error}</p>
               </div>
             )}
           </div>
         </div>
 
-        {/* Right Section - Chat Interface - Mobile Responsive */}
-        <div className="flex-1 bg-black/30 backdrop-blur-sm p-3 lg:p-6 min-h-[450px] lg:min-h-0">
+        {/* Right Section - Chat Interface - Mobile Optimized */}
+        <div className="flex-1 bg-black/30 backdrop-blur-sm p-2 sm:p-3 lg:p-6 min-h-[400px] sm:min-h-[450px] lg:min-h-[600px]">
           <ChatBot />
         </div>
       </div>

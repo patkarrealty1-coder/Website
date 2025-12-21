@@ -78,12 +78,16 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 shadow-lg transition-all duration-300" style={{ backgroundColor: '#001F54' }}>
+    <nav className="fixed top-0 left-0 right-0 z-50 shadow-lg transition-all duration-300 bg-gray-900">
       <div className="w-full px-4 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <span className="text-2xl lg:text-3xl font-bold" style={{ color: '#D4AF37' }}>Patkar's Realty</span>
+          <Link to="/" className="flex items-center group">
+            <img 
+              src="/images/Logo.png" 
+              alt="Patkar's Realty" 
+              className="h-28 lg:h-32 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -239,7 +243,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden rounded-lg mt-2 pb-4" style={{ backgroundColor: '#001F54' }}>
+          <div className="lg:hidden rounded-lg mt-2 pb-4 bg-gray-900">
             <div className="py-2 space-y-1">
               {navLinks.map((link) => (
                 <Link key={link.name} to={link.path} onClick={() => setIsOpen(false)}

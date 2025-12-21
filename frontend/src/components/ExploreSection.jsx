@@ -132,9 +132,9 @@ const ExploreSection = () => {
             {/* Stats - Bottom Left */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 max-w-3xl">
               {[
-                { number: '500+', label: 'Properties' },
-                { number: '50+', label: 'Cities' },
-                { number: '1000+', label: 'Happy Clients' },
+                { number: '120+', label: 'Properties' },
+                { number: '15+', label: 'Clients' },
+                { number: '145+', label: 'Client Support' },
                 { number: '24/7', label: 'Support' }
               ].map((stat, index) => (
                 <div 

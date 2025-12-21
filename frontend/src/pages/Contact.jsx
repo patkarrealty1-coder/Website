@@ -48,22 +48,22 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Office Address',
-      details: ['Shop No. 1, RSC Rd Number 19', 'Ganesh Darshan Society, Charkop, Sector 5', 'Kandivali West, Mumbai, Maharashtra 400067']
+      details: ['Patkar\'s Realty', 'Charkop, Kandivali West', 'Mumbai, Maharashtra 400067']
     },
     {
       icon: Phone,
       title: 'Phone Numbers',
-      details: ['+91 98765 43210', '+91 22 2640 1234', 'Toll Free: 1800 123 4567']
+      details: ['+91 91360 97299']
     },
     {
       icon: Mail,
-      title: 'Email Addresses',
-      details: ['info@patkarsrealty.com', 'sales@patkarsrealty.com', 'support@patkarsrealty.com']
+      title: 'Email Address',
+      details: ['info@patkarsrealty.com']
     },
     {
       icon: Clock,
-      title: 'Business Hours',
-      details: ['Monday - Friday: 9:00 AM - 7:00 PM', 'Saturday: 10:00 AM - 5:00 PM', 'Sunday: By Appointment']
+      title: 'Office Hours',
+      details: ['Monday - Saturday: 10:00 AM - 7:00 PM', 'Sunday: Closed']
     }
   ]
 
@@ -79,15 +79,14 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-gray-600 to-gray-500 py-20 pt-36">
+      {/* Hero Section - Reduced Height */}
+      <section className="bg-gray-900 py-12 pt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Contact Us
           </h1>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            Ready to find your dream property? Get in touch with our expert team. 
-            We're here to help you every step of the way.
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Get in touch with our expert team. We're here to help you every step of the way.
           </p>
         </div>
       </section>
@@ -97,7 +96,7 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="bg-white rounded-xl shadow-lg p-8">
+            <div className="bg-white rounded-xl shadow-lg p-8 h-fit">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
               
               {isSubmitted && (
@@ -153,7 +152,7 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300"
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 91360 97299"
                     />
                   </div>
                   <div>
@@ -228,29 +227,29 @@ const Contact = () => {
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6 h-fit">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-                <p className="text-gray-600 mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+                <p className="text-gray-600 mb-6">
                   We're here to help you with all your real estate needs. Whether you're buying, 
                   selling, or just have questions, our team is ready to assist you.
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="bg-white rounded-xl p-6 shadow-lg">
+                  <div key={index} className="bg-white rounded-xl p-5 shadow-lg">
                     <div className="flex items-start space-x-4">
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                          <info.icon className="h-6 w-6 text-primary" />
+                        <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                          <info.icon className="h-5 w-5 text-blue-600" />
                         </div>
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{info.title}</h3>
-                        <div className="space-y-1">
+                        <h3 className="text-base font-semibold text-gray-900 mb-1">{info.title}</h3>
+                        <div className="space-y-0.5">
                           {info.details.map((detail, idx) => (
-                            <p key={idx} className="text-gray-600">{detail}</p>
+                            <p key={idx} className="text-sm text-gray-600">{detail}</p>
                           ))}
                         </div>
                       </div>
@@ -258,27 +257,29 @@ const Contact = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
 
-              {/* Quick Contact */}
-              <div className="bg-gradient-to-r from-gray-600 to-gray-500 rounded-xl p-6 text-white">
-                <h3 className="text-xl font-semibold mb-4">Need Immediate Assistance?</h3>
-                <p className="mb-4">Call us directly for urgent inquiries or to schedule a property viewing.</p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href="tel:+919876543210"
-                    className="flex items-center justify-center space-x-2 bg-white text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                  >
-                    <Phone className="h-4 w-4" />
-                    <span>Call Now</span>
-                  </a>
-                  <a
-                    href="mailto:info@patkarsrealty.com"
-                    className="flex items-center justify-center space-x-2 border-2 border-white text-white px-4 py-2 rounded-lg hover:bg-white hover:text-gray-600 transition-colors duration-300"
-                  >
-                    <Mail className="h-4 w-4" />
-                    <span>Email Us</span>
-                  </a>
-                </div>
+          {/* Need Immediate Assistance - Full Width Below Both Cards */}
+          <div className="mt-12 bg-gray-900 rounded-xl p-8 text-white">
+            <div className="max-w-3xl mx-auto text-center">
+              <h3 className="text-2xl font-semibold mb-3">Need Immediate Assistance?</h3>
+              <p className="mb-6 text-gray-200">Call us directly for urgent inquiries or to schedule a property viewing.</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="tel:+919136097299"
+                  className="flex items-center justify-center space-x-2 bg-white text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-300 font-medium"
+                >
+                  <Phone className="h-5 w-5" />
+                  <span>Call Now</span>
+                </a>
+                <a
+                  href="mailto:info@patkarsrealty.com"
+                  className="flex items-center justify-center space-x-2 border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-gray-800 transition-colors duration-300 font-medium"
+                >
+                  <Mail className="h-5 w-5" />
+                  <span>Email Us</span>
+                </a>
               </div>
             </div>
           </div>

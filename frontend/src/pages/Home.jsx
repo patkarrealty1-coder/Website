@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Hero from '../components/Hero'
 import SearchSection from '../components/SearchSection'
-import PropertyCategories from '../components/PropertyCategories'
 import FeaturedLuxuryProperties from '../components/FeaturedLuxuryProperties'
 import FeaturesSection from '../components/FeaturesSection'
 import ProjectsSection from '../components/ProjectsSection'
@@ -103,9 +102,6 @@ const Home = () => {
       <div ref={searchRef}>
         <SearchSection />
       </div>
-
-      {/* Property Categories */}
-      <PropertyCategories />
 
       {/* Featured Luxury Properties */}
       <div ref={propertiesRef}>
