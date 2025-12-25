@@ -243,7 +243,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden rounded-lg mt-2 pb-4 bg-gray-900">
+          <div className="lg:hidden rounded-lg mt-2 pb-4 bg-gray-900 max-h-[80vh] overflow-y-auto">
             <div className="py-2 space-y-1">
               {navLinks.map((link) => (
                 <Link key={link.name} to={link.path} onClick={() => setIsOpen(false)}
