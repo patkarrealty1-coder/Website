@@ -4,12 +4,38 @@ import { Link } from 'react-router-dom'
 const AnimatedText = () => {
   const [currentPhase, setCurrentPhase] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
+  const [displayText, setDisplayText] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
   
   const texts = [
     "Your Lifetime Savings.\nYour Family's Happiness.\nToo Important to Navigate Alone.",
     "30+ Years Securing\nBuilder-Exclusive Rates\nAnd Complete Legal Safety",
-    "MahaRERA Certified.\nZero Buyer Commission.\nYour Trust, Our Priority."
+    "MahaRERA Compliant.\nWe work with you — not for a transaction,\nbut for the right decision.\nYour trust. Our responsibility."
   ]
+  
+  // Typing effect for the 3rd animation
+  useEffect(() => {
+    if (currentPhase === 2 && isVisible) {
+      setIsTyping(true)
+      setDisplayText('')
+      const fullText = texts[2]
+      let index = 0
+      
+      const typingInterval = setInterval(() => {
+        if (index < fullText.length) {
+          setDisplayText(fullText.substring(0, index + 1))
+          index++
+        } else {
+          clearInterval(typingInterval)
+          setIsTyping(false)
+        }
+      }, 30) // Fast typing speed
+      
+      return () => clearInterval(typingInterval)
+    } else {
+      setDisplayText(texts[currentPhase])
+    }
+  }, [currentPhase, isVisible])
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,35 +46,37 @@ const AnimatedText = () => {
         setIsVisible(true)
       }, 500)
       
-    }, 4000)
+    }, currentPhase === 2 ? 6000 : 4000) // Longer duration for typing animation
     
     return () => clearInterval(interval)
-  }, [])
+  }, [currentPhase])
   
   return (
     <div className="relative w-full flex items-center justify-center">
-      {/* Fixed rectangular boundary container */}
+      {/* Fixed rectangular boundary container with absolute height to prevent layout shift */}
       <div 
         className="w-full mx-auto px-4"
         style={{ 
           maxWidth: '950px',
-          minHeight: '220px',
+          height: '200px', // Fixed height instead of minHeight
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}
       >
         <div 
-          className={`text-center whitespace-pre-line leading-[1.2] transition-all duration-500 ease-in-out ${
+          className={`text-center whitespace-pre-line leading-[1.2] transition-opacity duration-500 ease-in-out ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ 
             fontFamily: "'Inter', 'Poppins', sans-serif",
             width: '100%',
-            fontSize: 'inherit'
+            fontSize: 'inherit',
+            position: 'absolute' // Prevent layout shift
           }}
         >
-          {texts[currentPhase]}
+          {currentPhase === 2 ? displayText : texts[currentPhase]}
+          {isTyping && <span className="animate-pulse">|</span>}
         </div>
       </div>
     </div>
@@ -108,7 +136,7 @@ const Hero = ({ onExploreClick }) => {
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{
-                fontSize: 'clamp(2.25rem, 5.5vw, 3.75rem)',
+                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
                 letterSpacing: '-0.025em'
               }}
             >
@@ -117,7 +145,7 @@ const Hero = ({ onExploreClick }) => {
           </div>
           
           {/* Subline Container - Fixed Position */}
-          <div className="w-full max-w-2xl mx-auto mb-12">
+          <div className="w-full max-w-2xl mx-auto mb-8">
             <p 
               className={`text-white/75 text-sm sm:text-base text-center px-4 transition-all duration-700 ease-out delay-150 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -125,72 +153,45 @@ const Hero = ({ onExploreClick }) => {
               style={{
                 lineHeight: '1.6',
                 fontWeight: '300',
-                minHeight: '48px' // Fixed height to prevent shift
+                minHeight: '48px'
               }}
             >
               30+ years securing builder-exclusive rates and complete legal safety—matching Mumbai families with dream homes. MahaRERA certified. Zero buyer commission.
             </p>
           </div>
           
-          {/* Buttons Container - Fixed Position, No Shifting */}
+          {/* CTA Section */}
           <div className="w-full max-w-3xl mx-auto" style={{ position: 'relative', zIndex: 10 }}>
-            <div 
-              className="flex flex-col sm:flex-row justify-center items-center gap-4 px-4"
-              style={{ minHeight: '60px' }}
+            {/* Buy, Sell, Rent, or Invest? Text */}
+            <p 
+              className={`text-white text-xl sm:text-2xl font-semibold mb-6 transition-all duration-700 ease-out ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ color: '#D4AF37' }}
             >
-              <Link
-                to="/buy"
-                className="inline-flex items-center justify-center text-sm sm:text-base font-semibold rounded-lg transition-colors duration-300 shadow-lg"
-                style={{ 
-                  backgroundColor: '#D4AF37',
-                  color: '#001F54',
-                  width: '180px',
-                  height: '52px',
-                  flexShrink: 0
-                }}
-              >
-                Buy
-              </Link>
-              
-              <Link
-                to="/rent"
-                className="inline-flex items-center justify-center border-2 border-white/90 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-white/10 hover:border-white transition-colors duration-300 shadow-lg backdrop-blur-sm"
-                style={{ 
-                  width: '180px',
-                  height: '52px',
-                  flexShrink: 0
-                }}
-              >
-                Rent
-              </Link>
-
+              Buy, Sell, Rent, or Invest?
+            </p>
+            
+            {/* Schedule a Consultation Button */}
+            <div className="flex justify-center">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center border-2 text-sm sm:text-base font-semibold rounded-lg transition-colors duration-300 shadow-lg hover:text-gray-900"
+                className="inline-flex items-center justify-center text-sm sm:text-base font-semibold rounded-lg transition-all duration-300 shadow-lg hover:scale-105"
                 style={{ 
-                  borderColor: '#D4AF37',
-                  color: '#D4AF37',
-                  width: '220px',
-                  height: '52px',
-                  flexShrink: 0
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = '#D4AF37'
-                  e.target.style.color = '#001F54'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'transparent'
-                  e.target.style.color = '#D4AF37'
+                  backgroundColor: '#D4AF37',
+                  color: '#111827',
+                  padding: '16px 32px',
+                  minWidth: '280px'
                 }}
               >
-                Book Consultation
+                Schedule a Consultation
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Enhanced Golden Particles - Much Larger for Laptop Visibility */}
+      {/* Enhanced Golden Particles */}
       {scrollY < 50 && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
           {[...Array(35)].map((_, i) => (
@@ -198,13 +199,13 @@ const Hero = ({ onExploreClick }) => {
               key={i}
               className="absolute rounded-full"
               style={{
-                width: `${5 + Math.random() * 6}px`, // 5-11px size range - much larger
+                width: `${5 + Math.random() * 6}px`,
                 height: `${5 + Math.random() * 6}px`,
                 left: `${Math.random() * 100}%`,
                 bottom: '-10px',
-                backgroundColor: '#D4AF37', // Champagne gold
+                backgroundColor: '#D4AF37',
                 boxShadow: '0 0 12px #D4AF37, 0 0 24px rgba(212, 175, 55, 0.5)',
-                opacity: '0.75', // Higher opacity for better visibility
+                opacity: '0.75',
                 animationDelay: `${Math.random() * 10}s`,
                 animationDuration: `${8 + Math.random() * 4}s`,
                 animation: 'floatUp linear infinite',
@@ -220,7 +221,7 @@ const Hero = ({ onExploreClick }) => {
       {/* Gradient at Top for Blending with Navbar */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/20 via-black/10 to-transparent pointer-events-none z-20"></div>
 
-      {/* Scroll Indicator with Pulse Animation */}
+      {/* Scroll Indicator */}
       {onExploreClick && scrollY < 100 && (
         <button
           onClick={handleScrollClick}

@@ -42,6 +42,8 @@ import Localities from './pages/Localities'
 import LocalityDetail from './pages/LocalityDetail'
 import FAQ from './pages/FAQ'
 import Testimonials from './pages/Testimonials'
+import Insights from './pages/Insights'
+import ShareRequirements from './pages/ShareRequirements'
 
 function AppContent() {
   const location = useLocation()
@@ -267,6 +269,26 @@ function AppContent() {
             <SmoothScroll>
               <main className="flex-grow">
                 <Testimonials />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          {/* Insights (Blog) Page */}
+          <Route path="/insights" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <Insights />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
+          {/* Share Requirements Page */}
+          <Route path="/share-requirements" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <ShareRequirements />
               </main>
               <Footer />
             </SmoothScroll>

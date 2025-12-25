@@ -44,6 +44,7 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Buy', path: '/buy' },
     { name: 'Rent', path: '/rent' },
+    { name: 'Insights', path: '/insights' },
   ]
 
   const servicesLinks = [
@@ -223,9 +224,8 @@ const Navbar = () => {
                   <ChevronDown className={`h-4 w-4 transition-transform ${showLoginDropdown ? 'rotate-180' : ''}`} />
                 </button>
                 {showLoginDropdown && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl py-2 z-50">
-                    <Link to="/login?type=buyer" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">Buyer Login</Link>
-                    <Link to="/login?type=seller" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">Seller Login</Link>
+                  <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl py-2 z-50">
+                    <Link to="/login?type=customer" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">Customer Login</Link>
                     <Link to="/login?type=agent" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">Agent Login</Link>
                   </div>
                 )}
@@ -286,6 +286,27 @@ const Navbar = () => {
                 Contact
               </Link>
 
+              {/* Mobile More Pages */}
+              <div className="px-4 py-2">
+                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#D4AF37' }}>More</div>
+                <Link to="/testimonials" onClick={() => setIsOpen(false)}
+                  className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                  Testimonials
+                </Link>
+                <Link to="/faq" onClick={() => setIsOpen(false)}
+                  className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                  FAQ
+                </Link>
+                <Link to="/share-requirements" onClick={() => setIsOpen(false)}
+                  className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                  Share Requirements
+                </Link>
+                <Link to="/agent-partnership" onClick={() => setIsOpen(false)}
+                  className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                  Agent Partnership
+                </Link>
+              </div>
+
               {/* Mobile Auth */}
               <div className="border-t border-blue-800 mt-2 pt-2 px-4">
                 {user ? (
@@ -300,8 +321,7 @@ const Navbar = () => {
                 ) : (
                   <div className="space-y-2 py-2">
                     <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#D4AF37' }}>Login As</div>
-                    <Link to="/login?type=buyer" onClick={() => setIsOpen(false)} className="block py-1.5 text-sm" style={{ color: '#C0C0C0' }}>Buyer</Link>
-                    <Link to="/login?type=seller" onClick={() => setIsOpen(false)} className="block py-1.5 text-sm" style={{ color: '#C0C0C0' }}>Seller</Link>
+                    <Link to="/login?type=customer" onClick={() => setIsOpen(false)} className="block py-1.5 text-sm" style={{ color: '#C0C0C0' }}>Customer</Link>
                     <Link to="/login?type=agent" onClick={() => setIsOpen(false)} className="block py-1.5 text-sm" style={{ color: '#C0C0C0' }}>Agent</Link>
                   </div>
                 )}

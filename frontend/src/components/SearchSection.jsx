@@ -7,6 +7,7 @@ const SearchSection = () => {
   const [location, setLocation] = useState('')
   const [propertyCategory, setPropertyCategory] = useState('')
   const [bedrooms, setBedrooms] = useState('')
+  const [budget, setBudget] = useState('')
 
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 100)
@@ -21,15 +22,15 @@ const SearchSection = () => {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    // Navigate to appropriate category page with search parameters
     const params = new URLSearchParams({
       location,
       propertyType: propertyCategory,
-      bedrooms
+      bedrooms,
+      budget
     })
     
     if (activeTab === 'For Investors') {
-      window.location.href = `/investors?${params.toString()}`
+      window.location.href = `/services/investment-advisory?${params.toString()}`
     } else if (activeTab.includes('Residential')) {
       window.location.href = `/residential?${params.toString()}`
     } else {
@@ -54,8 +55,6 @@ const SearchSection = () => {
             minHeight: '900px'
           }}
         >
-
-          
           {/* Content Container */}
           <div className="relative z-10 p-8 lg:p-16 h-full flex flex-col justify-center min-h-[900px]">
             
@@ -76,7 +75,7 @@ const SearchSection = () => {
                 </p>
               </div>
 
-              {/* Search Card - Positioned like reference */}
+              {/* Search Card */}
               <div 
                 className={`w-full bg-black/10 backdrop-blur-sm rounded-3xl p-6 lg:p-8 transition-all duration-1000 ease-out delay-400 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -99,76 +98,30 @@ const SearchSection = () => {
                   ))}
                 </div>
 
-                {/* Dropdowns and Search */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 sm:gap-4 mb-3 sm:mb-4">
+                {/* Dropdowns Row 1 */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-3 sm:mb-4">
                   {/* Location Dropdown */}
                   <div className="relative">
                     <select
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
                       className="w-full px-3 py-3 sm:px-5 sm:py-4 bg-white text-black text-sm sm:text-base rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 shadow-lg"
-                      style={{
-                        color: 'black',
-                        backgroundColor: 'white'
-                      }}
                     >
-                      <option value="" style={{ 
-                        color: 'white', 
-                        backgroundColor: '#3B82F6',
-                        fontWeight: 'bold'
-                      }}>Location</option>
-                      <option value="andheri-west" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Andheri West</option>
-                      <option value="andheri-east" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Andheri East</option>
-                      <option value="goregaon-west" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Goregaon West</option>
-                      <option value="goregaon-east" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Goregaon East</option>
-                      <option value="malad-west" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Malad West</option>
-                      <option value="malad-east" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Malad East</option>
-                      <option value="kandivali-west" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Kandivali West</option>
-                      <option value="kandivali-east" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Kandivali East</option>
-                      <option value="charkop" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Charkop</option>
-                      <option value="borivali-west" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Borivali West</option>
-                      <option value="borivali-east" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Borivali East</option>
-                      <option value="dahisar-west" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Dahisar West</option>
-                      <option value="dahisar-east" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>Dahisar East</option>
+                      <option value="">Location</option>
+                      <option value="oshiwara">Oshiwara</option>
+                      <option value="andheri-west">Andheri West</option>
+                      <option value="andheri-east">Andheri East</option>
+                      <option value="goregaon-west">Goregaon West</option>
+                      <option value="goregaon-east">Goregaon East</option>
+                      <option value="malad-west">Malad West</option>
+                      <option value="malad-east">Malad East</option>
+                      <option value="kandivali-west">Kandivali West</option>
+                      <option value="kandivali-east">Kandivali East</option>
+                      <option value="charkop">Charkop</option>
+                      <option value="borivali-west">Borivali West</option>
+                      <option value="borivali-east">Borivali East</option>
+                      <option value="dahisar-west">Dahisar West</option>
+                      <option value="dahisar-east">Dahisar East</option>
                     </select>
                     <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black pointer-events-none" />
                   </div>
@@ -179,84 +132,31 @@ const SearchSection = () => {
                       value={propertyCategory}
                       onChange={(e) => setPropertyCategory(e.target.value)}
                       className="w-full px-3 py-3 sm:px-5 sm:py-4 bg-white text-black text-sm sm:text-base rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 shadow-lg"
-                      style={{
-                        color: 'black',
-                        backgroundColor: 'white'
-                      }}
                     >
-                      <option value="" style={{ 
-                        color: 'white', 
-                        backgroundColor: '#3B82F6',
-                        fontWeight: 'bold'
-                      }}>Property Type</option>
+                      <option value="">Property Type</option>
                       {activeTab === 'For Investors' ? (
                         <>
-                          <option value="high-yield-residential" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>High-Yield Residential</option>
-                          <option value="commercial-investment" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Commercial Investment</option>
-                          <option value="rental-properties" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Rental Properties</option>
-                          <option value="development-land" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Development Land</option>
-                          <option value="reit-properties" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>REIT Properties</option>
+                          <option value="high-yield-residential">High-Yield Residential</option>
+                          <option value="commercial-investment">Commercial Investment</option>
+                          <option value="rental-properties">Rental Properties</option>
+                          <option value="development-land">Development Land</option>
+                          <option value="reit-properties">REIT Properties</option>
                         </>
                       ) : activeTab.includes('Residential') ? (
                         <>
-                          <option value="apartment" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Apartment</option>
-                          <option value="villa" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Villa</option>
-                          <option value="house" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>House</option>
-                          <option value="penthouse" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Penthouse</option>
-                          <option value="plot" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Plot</option>
+                          <option value="apartment">Apartment</option>
+                          <option value="bungalow">Bungalow</option>
+                          <option value="cluster-house">Cluster House</option>
+                          <option value="penthouse">Penthouse</option>
+                          <option value="plot">Plot</option>
                         </>
                       ) : (
                         <>
-                          <option value="office" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Office</option>
-                          <option value="shop" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Shop</option>
-                          <option value="retail" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Retail</option>
-                          <option value="warehouse" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Warehouse</option>
-                          <option value="co-working" style={{ 
-                            color: 'black', 
-                            backgroundColor: 'white'
-                          }}>Co-working</option>
+                          <option value="office">Office</option>
+                          <option value="shop">Shop</option>
+                          <option value="retail">Retail</option>
+                          <option value="warehouse">Warehouse</option>
+                          <option value="co-working">Co-working</option>
                         </>
                       )}
                     </select>
@@ -269,36 +169,35 @@ const SearchSection = () => {
                       value={bedrooms}
                       onChange={(e) => setBedrooms(e.target.value)}
                       className="w-full px-3 py-3 sm:px-5 sm:py-4 bg-white text-black text-sm sm:text-base rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 shadow-lg"
-                      style={{
-                        color: 'black',
-                        backgroundColor: 'white'
-                      }}
                     >
-                      <option value="" style={{ 
-                        color: 'white', 
-                        backgroundColor: '#3B82F6',
-                        fontWeight: 'bold'
-                      }}>Bedroom</option>
-                      <option value="1" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>1 Bedroom</option>
-                      <option value="2" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>2 Bedrooms</option>
-                      <option value="3" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>3 Bedrooms</option>
-                      <option value="4" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>4 Bedrooms</option>
-                      <option value="5+" style={{ 
-                        color: 'black', 
-                        backgroundColor: 'white'
-                      }}>5+ Bedrooms</option>
+                      <option value="">Bedroom</option>
+                      <option value="1">1 Bedroom</option>
+                      <option value="2">2 Bedrooms</option>
+                      <option value="3">3 Bedrooms</option>
+                      <option value="4">4 Bedrooms</option>
+                      <option value="5+">5+ Bedrooms</option>
+                    </select>
+                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Dropdowns Row 2 - Budget and Search */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  {/* Budget Dropdown */}
+                  <div className="relative">
+                    <select
+                      value={budget}
+                      onChange={(e) => setBudget(e.target.value)}
+                      className="w-full px-3 py-3 sm:px-5 sm:py-4 bg-white text-black text-sm sm:text-base rounded-xl appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 shadow-lg"
+                    >
+                      <option value="">Budget</option>
+                      <option value="below-50l">Below 50 Lakhs</option>
+                      <option value="50l-1cr">50 L - 1 Cr</option>
+                      <option value="1cr-1.5cr">1 Cr - 1.5 Cr</option>
+                      <option value="1.5cr-2cr">1.5 Cr - 2 Cr</option>
+                      <option value="2cr-3cr">2 - 3 Cr</option>
+                      <option value="3cr-5cr">3 - 5 Cr</option>
+                      <option value="5cr+">5+ Cr</option>
                     </select>
                     <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black pointer-events-none" />
                   </div>
@@ -313,33 +212,24 @@ const SearchSection = () => {
                   </button>
                 </div>
 
-
-
-                {/* Stats Cards - At Bottom of Search Card */}
+                {/* Stats Cards */}
                 <div 
                   className={`flex gap-2 sm:gap-4 flex-wrap justify-start transition-all duration-1000 ease-out delay-600 ${
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                 >
-                  {/* Stats Card 1 */}
                   <div className="bg-black/15 backdrop-blur-sm rounded-xl sm:rounded-2xl px-4 py-3 sm:px-6 sm:py-4 border border-white/10">
                     <div className="text-xl sm:text-2xl font-bold text-white">120+</div>
                     <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Properties</div>
                   </div>
-
-                  {/* Stats Card 2 */}
                   <div className="bg-black/15 backdrop-blur-sm rounded-xl sm:rounded-2xl px-4 py-3 sm:px-6 sm:py-4 border border-white/10">
                     <div className="text-xl sm:text-2xl font-bold text-white">15+</div>
                     <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Clients</div>
                   </div>
-
-                  {/* Stats Card 3 */}
                   <div className="bg-black/15 backdrop-blur-sm rounded-xl sm:rounded-2xl px-4 py-3 sm:px-6 sm:py-4 border border-white/10">
                     <div className="text-xl sm:text-2xl font-bold text-white">145+</div>
                     <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Client Support</div>
                   </div>
-
-                  {/* Stats Card 4 */}
                   <div className="bg-black/15 backdrop-blur-sm rounded-xl sm:rounded-2xl px-4 py-3 sm:px-6 sm:py-4 border border-white/10">
                     <div className="text-xl sm:text-2xl font-bold text-white">24/7</div>
                     <div className="text-[10px] sm:text-xs text-white/80 mt-0.5 sm:mt-1">Support</div>
