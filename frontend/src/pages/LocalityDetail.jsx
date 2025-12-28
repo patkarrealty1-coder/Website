@@ -110,7 +110,7 @@ const LocalityDetail = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gray-900 text-white py-20 pt-32">
+      <section className="bg-gray-900 text-white pt-24 pb-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-4">
             <MapPin className="h-8 w-8 text-yellow-500" />

@@ -79,20 +79,20 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Reduced Height */}
-      <section className="bg-gray-900 py-12 pt-28">
+      {/* Hero Section - Compact */}
+      <section className="bg-gray-900 pt-24 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Contact Us
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base text-gray-300 max-w-2xl mx-auto">
             Get in touch with our expert team. We're here to help you every step of the way.
           </p>
         </div>
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}

@@ -5,10 +5,10 @@ const InvestmentAdvisory = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gray-900 text-white py-20 pt-32">
+      <section className="bg-gray-900 text-white pt-24 pb-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Investment Advisory</h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">Investment Advisory</h1>
+          <p className="text-base text-gray-300 max-w-3xl mx-auto">
             Strategic real estate investment guidance for maximum returns
           </p>
         </div>

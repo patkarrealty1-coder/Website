@@ -1,43 +1,29 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import SearchSection from '../components/SearchSection'
 import FeaturedLuxuryProperties from '../components/FeaturedLuxuryProperties'
-import { Shield, Heart, BookOpen, Users, MapPin, Scale, Lightbulb, MessageSquare, Award, Building, Calendar, ArrowRight } from 'lucide-react'
+import { Shield, Heart, BookOpen, Users, MapPin, Scale, ArrowRight } from 'lucide-react'
 
 const Home = () => {
-  const searchRef = useRef(null)
-  const propertiesRef = useRef(null)
-  const [completedProjects, setCompletedProjects] = useState([])
-  const [ongoingProjects, setOngoingProjects] = useState([])
+  const [featuredProjects, setFeaturedProjects] = useState([])
   const [blogs, setBlogs] = useState([])
 
   useEffect(() => {
-    fetchProjects()
+    fetchFeaturedProjects()
     fetchBlogs()
   }, [])
 
-  const fetchProjects = async () => {
+  const fetchFeaturedProjects = async () => {
     try {
-      // Fetch completed projects
-      const completedRes = await fetch('http://localhost:4000/api/projects?status=completed')
-      if (completedRes.ok) {
-        const completedData = await completedRes.json()
-        if (completedData.success && completedData.data) {
-          setCompletedProjects(completedData.data.slice(0, 3))
-        }
-      }
-      
-      // Fetch ongoing projects
-      const ongoingRes = await fetch('http://localhost:4000/api/ongoing-projects')
-      if (ongoingRes.ok) {
-        const ongoingData = await ongoingRes.json()
-        if (ongoingData.success && ongoingData.data) {
-          setOngoingProjects(ongoingData.data.slice(0, 3))
+      const response = await fetch('http://localhost:4000/api/projects')
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success && data.data) {
+          setFeaturedProjects(data.data.slice(0, 8))
         }
       }
     } catch (error) {
-      // Silently fail - will show placeholder content
       console.log('Projects API not available')
     }
   }
@@ -52,34 +38,19 @@ const Home = () => {
         }
       }
     } catch (error) {
-      // Silently fail - will show placeholder content
       console.log('Blogs API not available')
     }
   }
 
-  const scrollToSearch = () => {
-    searchRef.current?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    })
-  }
-
-  const features = [
-    {
-      icon: Lightbulb,
-      title: 'Expert market knowledge',
-      description: 'A real estate company with strong market expertise can offer valuable insights.'
-    },
-    {
-      icon: MessageSquare,
-      title: 'Strong communication',
-      description: 'Clear and timely communication throughout the buying or selling process.'
-    },
-    {
-      icon: Award,
-      title: 'Professionalism',
-      description: 'Maintaining high standards of professionalism in all interactions and transactions.'
-    }
+  const featuredProjectsData = [
+    { id: 1, name: 'Skyline Towers', location: 'Kandivali West', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400', description: 'Premium 2 & 3 BHK apartments with modern amenities' },
+    { id: 2, name: 'Green Valley', location: 'Borivali East', image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400', description: 'Eco-friendly residential complex with lush gardens' },
+    { id: 3, name: 'Royal Heights', location: 'Charkop', image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400', description: 'Luxurious living spaces with panoramic views' },
+    { id: 4, name: 'Palm Residency', location: 'Malad West', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400', description: 'Contemporary homes in prime location' },
+    { id: 5, name: 'Sunrise Apartments', location: 'Goregaon West', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400', description: 'Affordable luxury for modern families' },
+    { id: 6, name: 'Ocean View', location: 'Dahisar West', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400', description: 'Serene living with excellent connectivity' },
+    { id: 7, name: 'Metro Heights', location: 'Andheri West', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400', description: 'Smart homes near metro station' },
+    { id: 8, name: 'Garden City', location: 'Kandivali East', image: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=400', description: 'Family-friendly community living' }
   ]
 
   const values = [
@@ -118,147 +89,54 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <Hero onExploreClick={scrollToSearch} />
+      <Hero />
 
       {/* Search Section */}
-      <div ref={searchRef}>
-        <SearchSection />
-      </div>
+      <SearchSection />
 
       {/* Featured Luxury Properties */}
-      <div ref={propertiesRef}>
-        <FeaturedLuxuryProperties />
-      </div>
+      <FeaturedLuxuryProperties />
 
-      {/* Features Section */}
+      {/* Our Featured Projects Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full mb-4">
-                Features
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Discover our features</h2>
-              <p className="text-gray-600 mb-8">Features built to simplify your journey.</p>
-              
-              <div className="space-y-6">
-                {features.map((feature, index) => (
-                  <div key={index}>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                    <p className="text-gray-600">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="relative">
-              <img 
-                src="/images/feature-home.jpg" 
-                alt="Modern luxury interior"
-                className="rounded-2xl shadow-xl w-full h-[400px] object-cover"
-                onError={(e) => {
-                  e.target.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800'
-                }}
-              />
-            </div>
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full mb-4">
+              Our Projects
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Featured Projects</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Explore our portfolio of premium residential projects across Mumbai's western suburbs</p>
           </div>
-        </div>
-      </section>
-
-      {/* Completed Projects Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="inline-block px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full mb-4">
-            Completed Projects
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Completed Projects</h2>
-          <p className="text-gray-600 mb-10">Explore our portfolio of successfully completed real estate projects</p>
           
-          {completedProjects.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {completedProjects.map((project) => (
-                <div key={project._id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {(featuredProjects.length > 0 ? featuredProjects : featuredProjectsData).map((project, index) => (
+              <div key={project._id || project.id || index} className="group cursor-pointer">
+                <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
                   <img 
-                    src={project.images?.[0] || '/images/placeholder-project.jpg'} 
+                    src={project.images?.[0] || project.image || '/images/placeholder-project.jpg'} 
                     alt={project.name}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-                      <MapPin className="h-4 w-4" />
-                      <span>{project.location || 'Mumbai, Maharashtra'}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{project.name}</h3>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                      <span className="flex items-center gap-1">
-                        <Building className="h-4 w-4" />
-                        {project.units || '0'} Units
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        {project.completionYear || '2024'}
-                      </span>
-                    </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                    <h3 className="text-white font-semibold text-sm md:text-base">{project.name}</h3>
+                    <p className="text-gray-200 text-xs md:text-sm flex items-center gap-1 mt-1">
+                      <MapPin className="h-3 w-3" />
+                      {project.location}
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-center text-gray-500 py-8">No completed projects found</p>
-          )}
-        </div>
-      </section>
-
-      {/* Ongoing Projects Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="inline-block px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-full mb-4">
-            Ongoing Projects
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Ongoing Projects</h2>
-          <p className="text-gray-600 mb-10">Explore our current projects under development</p>
-          
-          {ongoingProjects.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {ongoingProjects.map((project) => (
-                <div key={project._id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                  <img 
-                    src={project.images?.[0] || '/images/placeholder-project.jpg'} 
-                    alt={project.name}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
-                      <MapPin className="h-4 w-4" />
-                      <span>{project.location || 'Mumbai, Maharashtra'}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{project.name}</h3>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                      <span className="flex items-center gap-1">
-                        <Building className="h-4 w-4" />
-                        {project.units || '0'} Units
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        {project.expectedCompletion || '2025'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-center text-gray-500 py-8">No ongoing projects found</p>
-          )}
+                <p className="text-gray-600 text-xs md:text-sm mt-2 line-clamp-2">{project.description}</p>
+              </div>
+            ))}
+          </div>
           
           <div className="text-center mt-10">
             <Link
               to="/projects"
               className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
             >
-              Explore All Projects
+              View All Projects
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -448,6 +326,58 @@ const Home = () => {
                 {area}
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-gray-600">Quick answers to common questions about our services</p>
+          </div>
+          <div className="space-y-6">
+            {[
+              {
+                question: "How do I schedule a property viewing?",
+                answer: "You can schedule a viewing by calling us at +91 91360 97299, filling out the contact form, or clicking the 'Schedule a Consultation' button."
+              },
+              {
+                question: "What areas do you serve?",
+                answer: "We primarily serve Mumbai's western suburbs including Charkop, Kandivali, Borivali, Malad, Goregaon, Andheri, Dahisar, and Oshiwara with deep local expertise."
+              },
+              {
+                question: "Do you charge buyers any commission?",
+                answer: "No, we operate on a zero buyer commission model. Our services for buyers are completely free."
+              },
+              {
+                question: "How long have you been in business?",
+                answer: "Patkar's Realty has been serving Mumbai families for over 30 years, building trust through three generations of clients."
+              },
+              {
+                question: "Do you help with property financing?",
+                answer: "Yes, we provide loan assistance and work with leading banks to help you secure the best home loan rates and terms."
+              },
+              {
+                question: "Are you MahaRERA certified?",
+                answer: "Yes, we are MahaRERA certified and compliant, ensuring complete legal safety and transparency in all transactions."
+              }
+            ].map((faq, index) => (
+              <div key={index} className="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{faq.question}</h3>
+                <p className="text-gray-600">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link
+              to="/faq"
+              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+            >
+              View All FAQs
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

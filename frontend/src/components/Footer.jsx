@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Twitter, ChevronDown } from 'lucide-react'
+import { Phone, Mail, Facebook, Instagram, Linkedin, Twitter, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 
 const Footer = () => {
@@ -40,6 +40,7 @@ const Footer = () => {
     { name: 'Privacy Policy', path: '/privacy-policy' },
     { name: 'Terms & Conditions', path: '/terms-conditions' },
     { name: 'Disclaimer', path: '/disclaimer' },
+    { name: 'Partner with Us', path: '/agent-partnership' },
   ]
 
   return (
@@ -125,9 +126,6 @@ const Footer = () => {
                   <Link to={link.path} className="text-gray-400 hover:text-white text-sm">{link.name}</Link>
                 </li>
               ))}
-              <li>
-                <Link to="/agent-partnering" className="text-gray-400 hover:text-white text-sm">Agent Partnering</Link>
-              </li>
             </ul>
             
             {/* Login Button */}
@@ -139,10 +137,9 @@ const Footer = () => {
                 Login <ChevronDown className={`h-4 w-4 transition-transform ${showLoginOptions ? 'rotate-180' : ''}`} />
               </button>
               {showLoginOptions && (
-                <div className="absolute bottom-full left-0 mb-2 w-36 bg-white rounded-lg shadow-xl py-2 z-50">
-                  <Link to="/login?type=buyer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Buyer</Link>
-                  <Link to="/login?type=seller" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Seller</Link>
-                  <Link to="/login?type=agent" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Agent</Link>
+                <div className="absolute bottom-full left-0 mb-2 w-44 bg-white rounded-lg shadow-xl py-2 z-50">
+                  <Link to="/login?type=customer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Customer Login</Link>
+                  <Link to="/login?type=agent" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Agent Login</Link>
                 </div>
               )}
             </div>

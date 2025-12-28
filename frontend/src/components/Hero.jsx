@@ -83,7 +83,7 @@ const AnimatedText = () => {
   )
 }
 
-const Hero = ({ onExploreClick }) => {
+const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [scrollY, setScrollY] = useState(0)
 
@@ -97,12 +97,6 @@ const Hero = ({ onExploreClick }) => {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const handleScrollClick = () => {
-    if (onExploreClick) {
-      onExploreClick()
-    }
-  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -220,24 +214,6 @@ const Hero = ({ onExploreClick }) => {
 
       {/* Gradient at Top for Blending with Navbar */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/20 via-black/10 to-transparent pointer-events-none z-20"></div>
-
-      {/* Scroll Indicator */}
-      {onExploreClick && scrollY < 100 && (
-        <button
-          onClick={handleScrollClick}
-          className={`absolute bottom-32 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-800 z-30 ${
-            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-          aria-label="Scroll to properties"
-        >
-          <div className="flex flex-col items-center gap-2 text-white hover:text-amber-400 transition-colors cursor-pointer">
-            <span className="text-sm font-medium drop-shadow-lg" style={{ fontFamily: "'Inter', sans-serif" }}>Scroll to explore</span>
-            <div className="w-6 h-10 border-2 border-white/80 rounded-full flex justify-center animate-bounce hover:border-amber-400 transition-colors">
-              <div className="w-1 h-3 bg-white/80 rounded-full mt-2 animate-pulse"></div>
-            </div>
-          </div>
-        </button>
-      )}
     </section>
   )
 }

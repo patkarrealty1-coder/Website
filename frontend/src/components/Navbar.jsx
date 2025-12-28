@@ -183,6 +183,14 @@ const Navbar = () => {
             >
               Contact
             </Link>
+
+            <Link
+              to="/agent-partnership"
+              className="text-sm font-medium transition-colors whitespace-nowrap hover:opacity-80"
+              style={{ color: isActive('/agent-partnership') ? '#D4AF37' : '#C0C0C0' }}
+            >
+              Partner with Us
+            </Link>
             
             {/* Login Dropdown */}
             {user ? (
@@ -303,7 +311,7 @@ const Navbar = () => {
                 </Link>
                 <Link to="/agent-partnership" onClick={() => setIsOpen(false)}
                   className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
-                  Agent Partnership
+                  Partner with Us
                 </Link>
               </div>
 
