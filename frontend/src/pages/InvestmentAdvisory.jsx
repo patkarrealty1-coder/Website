@@ -205,15 +205,16 @@ const InvestmentAdvisory = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+      <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Build Your Real Estate Portfolio?</h2>
-          <p className="text-xl text-gray-200 mb-8">
+          <p className="text-xl text-gray-300 mb-8">
             Schedule a consultation with our investment advisors
           </p>
           <Link
             to="/contact"
-            className="inline-block px-8 py-4 bg-yellow-500 text-gray-900 font-semibold rounded-lg hover:bg-yellow-400 transition-colors"
+            className="inline-block px-8 py-4 font-semibold rounded-lg transition-colors"
+            style={{ backgroundColor: '#D4AF37', color: '#111827' }}
           >
             Book Investment Consultation
           </Link>

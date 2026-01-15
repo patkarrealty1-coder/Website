@@ -143,6 +143,100 @@ const Home = () => {
         </div>
       </section>
 
+      {/* AI Real Estate Agent Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="text-white">
+              <span className="inline-block px-4 py-2 bg-blue-500/20 text-blue-300 text-sm font-medium rounded-full mb-6 border border-blue-500/30">
+                ✨ AI-Powered Assistance
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                Meet Sara, Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">AI Real Estate Agent</span>
+              </h2>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                Get instant answers to your property questions, personalized recommendations, and expert guidance 24/7. Sara is trained on Mumbai's real estate market to help you make informed decisions.
+              </p>
+              
+              <div className="space-y-4 mb-10">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span className="text-gray-200">Instant property recommendations based on your needs</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span className="text-gray-200">Market insights and price analysis</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span className="text-gray-200">Available 24/7 to answer your questions</span>
+                </div>
+              </div>
+              
+              <Link
+                to="/ai-agent"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                Chat with Sara Now
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+            
+            {/* Right - Agent Image */}
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-30 scale-110"></div>
+                
+                {/* Agent card */}
+                <div className="relative bg-white/10 backdrop-blur-lg rounded-3xl p-6 border border-white/20 shadow-2xl">
+                  <div className="w-64 h-80 md:w-80 md:h-96 rounded-2xl overflow-hidden mb-4">
+                    <img 
+                      src="/images/Saraa.png" 
+                      alt="Sara - AI Real Estate Agent"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.src = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop'
+                      }}
+                    />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-white mb-1">Sara</h3>
+                    <p className="text-blue-300 font-medium">AI Real Estate Consultant</p>
+                    <div className="flex items-center justify-center gap-2 mt-3">
+                      <span className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+                      <span className="text-green-400 text-sm">Online & Ready to Help</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Blogs/Insights Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

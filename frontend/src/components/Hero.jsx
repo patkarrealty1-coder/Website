@@ -4,38 +4,12 @@ import { Link } from 'react-router-dom'
 const AnimatedText = () => {
   const [currentPhase, setCurrentPhase] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
-  const [displayText, setDisplayText] = useState('')
-  const [isTyping, setIsTyping] = useState(false)
   
   const texts = [
     "Your Lifetime Savings.\nYour Family's Happiness.\nToo Important to Navigate Alone.",
     "30+ Years Securing\nBuilder-Exclusive Rates\nAnd Complete Legal Safety",
-    "MahaRERA Compliant.\nWe work with you — not for a transaction,\nbut for the right decision.\nYour trust. Our responsibility."
+    "We work with you — not for a transaction,\nbut for the right decision.\nYour trust. Our responsibility."
   ]
-  
-  // Typing effect for the 3rd animation
-  useEffect(() => {
-    if (currentPhase === 2 && isVisible) {
-      setIsTyping(true)
-      setDisplayText('')
-      const fullText = texts[2]
-      let index = 0
-      
-      const typingInterval = setInterval(() => {
-        if (index < fullText.length) {
-          setDisplayText(fullText.substring(0, index + 1))
-          index++
-        } else {
-          clearInterval(typingInterval)
-          setIsTyping(false)
-        }
-      }, 30) // Fast typing speed
-      
-      return () => clearInterval(typingInterval)
-    } else {
-      setDisplayText(texts[currentPhase])
-    }
-  }, [currentPhase, isVisible])
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,7 +20,7 @@ const AnimatedText = () => {
         setIsVisible(true)
       }, 500)
       
-    }, currentPhase === 2 ? 6000 : 4000) // Longer duration for typing animation
+    }, 4000) // 4 seconds for each text
     
     return () => clearInterval(interval)
   }, [currentPhase])
@@ -58,7 +32,7 @@ const AnimatedText = () => {
         className="w-full mx-auto px-4"
         style={{ 
           maxWidth: '950px',
-          height: '200px', // Fixed height instead of minHeight
+          height: '200px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -72,11 +46,10 @@ const AnimatedText = () => {
             fontFamily: "'Inter', 'Poppins', sans-serif",
             width: '100%',
             fontSize: 'inherit',
-            position: 'absolute' // Prevent layout shift
+            position: 'absolute'
           }}
         >
-          {currentPhase === 2 ? displayText : texts[currentPhase]}
-          {isTyping && <span className="animate-pulse">|</span>}
+          {texts[currentPhase]}
         </div>
       </div>
     </div>
@@ -181,6 +154,9 @@ const Hero = () => {
                 Schedule a Consultation
               </Link>
             </div>
+            
+            {/* MahaRERA Certified Text */}
+            <p className="text-white/60 text-xs mt-6">MahaRERA Certified</p>
           </div>
         </div>
       </div>

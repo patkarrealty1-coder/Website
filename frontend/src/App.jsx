@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -24,6 +25,8 @@ import AdminPendingBlogs from './pages/AdminPendingBlogs'
 import AdminProjects from './pages/AdminProjects'
 import AdminProjectForm from './pages/AdminProjectForm'
 import AdminFeaturedProperties from './pages/AdminFeaturedProperties'
+import AdminPageContent from './pages/AdminPageContent'
+import AdminLeads from './pages/AdminLeads'
 import AIRealEstateAgent from './pages/AIRealEstateAgent'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsConditions from './pages/TermsConditions'
@@ -44,6 +47,9 @@ import FAQ from './pages/FAQ'
 import Testimonials from './pages/Testimonials'
 import Insights from './pages/Insights'
 import ShareRequirements from './pages/ShareRequirements'
+import AgentPartnership from './pages/AgentPartnership'
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''
 
 function AppContent() {
   const location = useLocation()
@@ -77,6 +83,8 @@ function AppContent() {
           <Route path="/management/ongoing-projects/new" element={<AdminOngoingProjectForm />} />
           <Route path="/management/ongoing-projects/edit/:id" element={<AdminOngoingProjectForm />} />
           <Route path="/management/featured-properties" element={<AdminFeaturedProperties />} />
+          <Route path="/management/page-content" element={<AdminPageContent />} />
+          <Route path="/management/leads" element={<AdminLeads />} />
 
           {/* AI Agent Route */}
           <Route path="/ai-agent" element={<AIRealEstateAgent />} />
@@ -294,6 +302,16 @@ function AppContent() {
             </SmoothScroll>
           } />
           
+          {/* Agent Partnership Page */}
+          <Route path="/agent-partnership" element={
+            <SmoothScroll>
+              <main className="flex-grow">
+                <AgentPartnership />
+              </main>
+              <Footer />
+            </SmoothScroll>
+          } />
+          
           {/* Buy and Rent routes - redirect to residential/commercial */}
           <Route path="/buy" element={
             <SmoothScroll>
@@ -346,9 +364,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <Router>
+        <AppContent />
+      </Router>
+    </GoogleOAuthProvider>
   )
 }
 

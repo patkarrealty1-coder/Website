@@ -1,7 +1,31 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Shield, Heart, BookOpen, Users, MapPin, Scale, Phone, Mail, Clock } from 'lucide-react'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+
 const About = () => {
+  const [pageContent, setPageContent] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchAboutContent()
+  }, [])
+
+  const fetchAboutContent = async () => {
+    try {
+      const response = await fetch(`${API_URL}/page-content/about`)
+      const data = await response.json()
+      if (data.success && data.data) {
+        setPageContent(data.data)
+      }
+    } catch (error) {
+      console.error('Error fetching About content:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const values = [
     {
       icon: Shield,
@@ -35,53 +59,44 @@ const About = () => {
     }
   ]
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="bg-gray-900 text-white pt-24 pb-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">About Patkar's Realty</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{pageContent?.title || 'About Patkar\'s Realty'}</h1>
           <p className="text-base text-gray-300 max-w-3xl mx-auto">
             Three decades of trust, integrity, and client-first service in Mumbai's western suburbs.
           </p>
         </div>
       </section>
 
-      {/* Our Story Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Our Story: Three Decades of Trust</h2>
-          <div className="prose prose-lg max-w-none text-gray-600 space-y-6">
-            <p>
-              In the early 1990s, Charkop was transforming. Mumbai's western suburbs were expanding, and families were ready to invest their life savings in their first homes.
-            </p>
-            <p>
-              Patkar's Realty was founded on a simple principle: <strong>treat every client's investment as if it were your own family's</strong>. No pressure tactics. No hidden agendas. Just honest guidance for life's biggest financial decision.
-            </p>
-            <p>
-              This approach wasn't the easiest path. We've recommended clients wait during market peaks. We've suggested smaller homes within comfortable budgets when larger ones meant higher commissions. We've walked away from builder partnerships that offered lucrative incentives but questionable delivery.
-            </p>
-            <p>
-              The result? Over 30 years later, most of our business comes from referrals. Families return for their next purchase, then send their children, siblings, and friends. <strong>Three generations trusting one name</strong>—that's not marketing, that's validation.
-            </p>
-            <p>
-              We've grown with our neighborhoods—watching Charkop, Kandivali, Borivali, and Malad evolve from developing suburbs to thriving communities. Through every market cycle, our commitment remained constant: <strong>your interest before our commission</strong>.
-            </p>
+      {/* Dynamic Sections from Admin Panel */}
+      {pageContent?.sections?.map((section, index) => (
+        <section key={index} className={`py-16 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">{section.heading}</h2>
+            <div className="prose prose-lg max-w-none text-gray-600">
+              {section.content.split('\n\n').map((paragraph, pIndex) => (
+                <p key={pIndex} className="mb-4 whitespace-pre-line">{paragraph}</p>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
-      {/* Mission Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            To protect your lifetime investment with expertise, integrity, and exclusive access—ensuring every family makes decisions they'll be proud of for decades.
-          </p>
-        </div>
-      </section>
-
-      {/* Values Section */}
+      {/* Values Section - Keep the visual cards */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Our Values</h2>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, CheckCircle, Users, Handshake, MapPin, ArrowRight } from 'lucide-react'
+import { X, CheckCircle, Users, UserPlus, MapPin, ArrowRight } from 'lucide-react'
 
 const AgentPartnership = () => {
   const [showModal, setShowModal] = useState(false)

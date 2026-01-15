@@ -187,10 +187,10 @@ export const SOCIAL_LINKS = {
 
 // Contact Information
 export const CONTACT_INFO = {
-  PHONE: '+91 98765 43210',
-  EMAIL: 'info@patkarsrealty.com',
-  ADDRESS: '123 Real Estate Plaza, Mumbai, Maharashtra 400001',
-  WORKING_HOURS: 'Mon - Sat: 9:00 AM - 7:00 PM'
+  PHONE: '+91 91360 97299',
+  EMAIL: 'support@patkarrealty.in',
+  ADDRESS: 'Patkar\'s Realty, Charkop, Kandivali West, Mumbai, Maharashtra 400067',
+  WORKING_HOURS: 'Mon - Sat: 10:00 AM - 7:00 PM'
 };
 
 // SEO Meta Tags

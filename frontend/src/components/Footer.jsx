@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, Facebook, Instagram, Linkedin, Twitter, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
+import AuthForm from './AuthForm'
 
 const Footer = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false)
+  const [showAuthForm, setShowAuthForm] = useState(false)
+  const [authUserType, setAuthUserType] = useState('customer')
 
   const aboutLinks = [
     { name: 'About Us', path: '/about' },
@@ -63,8 +66,8 @@ const Footer = () => {
               <a href="tel:+919136097299" className="flex items-center gap-2 text-gray-400 hover:text-white text-sm">
                 <Phone className="h-4 w-4" /> +91 91360 97299
               </a>
-              <a href="mailto:info@patkarsrealty.com" className="flex items-center gap-2 text-gray-400 hover:text-white text-sm">
-                <Mail className="h-4 w-4" /> info@patkarsrealty.com
+              <a href="mailto:support@patkarrealty.in" className="flex items-center gap-2 text-gray-400 hover:text-white text-sm">
+                <Mail className="h-4 w-4" /> support@patkarrealty.in
               </a>
             </div>
           </div>
@@ -138,8 +141,26 @@ const Footer = () => {
               </button>
               {showLoginOptions && (
                 <div className="absolute bottom-full left-0 mb-2 w-44 bg-white rounded-lg shadow-xl py-2 z-50">
-                  <Link to="/login?type=customer" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Customer Login</Link>
-                  <Link to="/login?type=agent" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Agent Login</Link>
+                  <button 
+                    onClick={() => {
+                      setAuthUserType('customer')
+                      setShowAuthForm(true)
+                      setShowLoginOptions(false)
+                    }} 
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                  >
+                    Customer Login
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setAuthUserType('agent')
+                      setShowAuthForm(true)
+                      setShowLoginOptions(false)
+                    }} 
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                  >
+                    Agent Login
+                  </button>
                 </div>
               )}
             </div>
@@ -159,6 +180,14 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Auth Form Modal */}
+      {showAuthForm && (
+        <AuthForm 
+          userType={authUserType}
+          onClose={() => setShowAuthForm(false)}
+        />
+      )}
     </footer>
   )
 }

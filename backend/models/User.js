@@ -17,9 +17,18 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'Password is required'],
     minlength: [6, 'Password must be at least 6 characters'],
     select: false
+  },
+  googleId: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
+  authProvider: {
+    type: String,
+    enum: ['local', 'google'],
+    default: 'local'
   },
   phone: {
     type: String,
@@ -33,6 +42,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     maxlength: [500, 'Bio cannot exceed 500 characters'],
     default: ''
+  },
+  userType: {
+    type: String,
+    enum: ['customer', 'agent'],
+    default: 'customer'
   },
   preferences: {
     preferredLocations: [{
@@ -74,9 +88,9 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 })
 
-// Hash password before saving
+// Hash password before saving (only for local auth)
 userSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next()
+  if (!this.isModified('password') || !this.password) return next()
   
   this.password = await bcrypt.hash(this.password, 12)
   next()

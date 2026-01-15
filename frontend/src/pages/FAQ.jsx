@@ -1,42 +1,65 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronDown, MessageCircle } from 'lucide-react'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
 
 const FAQ = () => {
   const [openCategory, setOpenCategory] = useState('general')
   const [openQuestion, setOpenQuestion] = useState(null)
+  const [pageContent, setPageContent] = useState(null)
+  const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+    fetchFAQContent()
+  }, [])
+
+  const fetchFAQContent = async () => {
+    try {
+      const response = await fetch(`${API_URL}/page-content/faq`)
+      const data = await response.json()
+      if (data.success && data.data) {
+        setPageContent(data.data)
+      }
+    } catch (error) {
+      console.error('Error fetching FAQ content:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Fallback hardcoded data
   const categories = {
     general: {
       title: 'General Real Estate',
-      faqs: [
+      faqs: pageContent?.faqs || [
         {
-          q: 'What is the difference between buying and renting?',
-          a: 'Buying means you own the property and build equity over time, but requires a large upfront investment and ongoing maintenance costs. Renting offers flexibility and lower initial costs, but you don\'t build equity. Buying is ideal for long-term stability (5+ years), while renting suits those who need flexibility or are saving for a down payment.'
+          question: 'What is the difference between buying and renting?',
+          answer: 'Buying means you own the property and build equity over time, but requires a large upfront investment and ongoing maintenance costs. Renting offers flexibility and lower initial costs, but you don\'t build equity. Buying is ideal for long-term stability (5+ years), while renting suits those who need flexibility or are saving for a down payment.'
         },
         {
-          q: 'How much should I budget for a property in Mumbai?',
-          a: 'In Mumbai\'s western suburbs, budget ₹50 lakhs - ₹1 crore for a 1-2 BHK, ₹1-2 crores for a 3 BHK, and ₹2 crores+ for larger homes. Beyond the property price, budget 8-10% for stamp duty and registration, 1-2% for brokerage, and additional costs for interior work, legal fees, and moving expenses.'
+          question: 'How much should I budget for a property in Mumbai?',
+          answer: 'In Mumbai\'s western suburbs, budget ₹50 lakhs - ₹1 crore for a 1-2 BHK, ₹1-2 crores for a 3 BHK, and ₹2 crores+ for larger homes. Beyond the property price, budget 8-10% for stamp duty and registration, 1-2% for brokerage, and additional costs for interior work, legal fees, and moving expenses.'
         },
         {
-          q: 'What are closing costs?',
-          a: 'Closing costs include stamp duty (5-6% in Maharashtra), registration fees (1%), legal fees, property valuation charges, and brokerage (typically 1-2%). For a ₹1 crore property, expect ₹8-10 lakhs in closing costs. Some costs like stamp duty vary based on gender and property type.'
+          question: 'What are closing costs?',
+          answer: 'Closing costs include stamp duty (5-6% in Maharashtra), registration fees (1%), legal fees, property valuation charges, and brokerage (typically 1-2%). For a ₹1 crore property, expect ₹8-10 lakhs in closing costs. Some costs like stamp duty vary based on gender and property type.'
         },
         {
-          q: 'Should I buy an under-construction or ready-to-move property?',
-          a: 'Under-construction properties are 15-20% cheaper and offer flexible payment plans, but carry completion risk and GST (5%). Ready-to-move properties cost more but offer immediate possession, no GST, and you can inspect before buying. Choose based on your timeline, budget, and risk tolerance.'
+          question: 'Should I buy an under-construction or ready-to-move property?',
+          answer: 'Under-construction properties are 15-20% cheaper and offer flexible payment plans, but carry completion risk and GST (5%). Ready-to-move properties cost more but offer immediate possession, no GST, and you can inspect before buying. Choose based on your timeline, budget, and risk tolerance.'
         },
         {
-          q: 'What is RERA and why does it matter?',
-          a: 'RERA (Real Estate Regulatory Authority) protects homebuyers by mandating project registration, transparent pricing, and timely delivery. Always verify a project\'s RERA registration number on maharera.mahaonline.gov.in. RERA-registered projects offer legal recourse if builders delay or deviate from promises.'
+          question: 'What is RERA and why does it matter?',
+          answer: 'RERA (Real Estate Regulatory Authority) protects homebuyers by mandating project registration, transparent pricing, and timely delivery. Always verify a project\'s RERA registration number on maharera.mahaonline.gov.in. RERA-registered projects offer legal recourse if builders delay or deviate from promises.'
         },
         {
-          q: 'How do I verify if a property has clear title?',
-          a: 'Check the property\'s title deed, encumbrance certificate (shows no pending loans/disputes), and 7/12 extract (for land). Hire a lawyer to verify ownership chain for 30 years. Ensure the seller has proper authorization to sell and all previous transactions are properly registered.'
+          question: 'How do I verify if a property has clear title?',
+          answer: 'Check the property\'s title deed, encumbrance certificate (shows no pending loans/disputes), and 7/12 extract (for land). Hire a lawyer to verify ownership chain for 30 years. Ensure the seller has proper authorization to sell and all previous transactions are properly registered.'
         },
         {
-          q: 'What is carpet area vs built-up area?',
-          a: 'Carpet area is the actual usable floor space (wall-to-wall). Built-up area includes carpet area plus walls and balconies. Super built-up area adds common areas like lobbies and amenities. Always ask for carpet area when comparing properties, as it reflects actual living space.'
+          question: 'What is carpet area vs built-up area?',
+          answer: 'Carpet area is the actual usable floor space (wall-to-wall). Built-up area includes carpet area plus walls and balconies. Super built-up area adds common areas like lobbies and amenities. Always ask for carpet area when comparing properties, as it reflects actual living space.'
         }
       ]
     },
@@ -44,8 +67,8 @@ const FAQ = () => {
       title: 'Legal & Documentation',
       faqs: [
         {
-          q: 'What is stamp duty in Maharashtra?',
-          a: 'Stamp duty in Maharashtra is 5% for men and 4% for women (for properties up to ₹30 lakhs). Registration charges are 1% of the property value. For joint ownership with a woman as the first owner, you can avail the lower rate. Metro Mumbai has a 1% metro cess additional charge.'
+          question: 'What is stamp duty in Maharashtra?',
+          answer: 'Stamp duty in Maharashtra is 5% for men and 4% for women (for properties up to ₹30 lakhs). Registration charges are 1% of the property value. For joint ownership with a woman as the first owner, you can avail the lower rate. Metro Mumbai has a 1% metro cess additional charge.'
         },
         {
           q: 'How long does property registration take?',

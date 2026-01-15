@@ -446,30 +446,97 @@ const AIRealEstateAgent = () => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* Enhanced Golden Particles - Same as Hero Section */}
+      {/* Enhanced Luxury Golden Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
-        {[...Array(25)].map((_, i) => (
+        {/* Large floating golden orbs */}
+        {[...Array(8)].map((_, i) => (
           <div
-            key={i}
+            key={`orb-${i}`}
             className="absolute rounded-full"
             style={{
-              width: `${3 + Math.random() * 4}px`, // 3-7px size range
-              height: `${3 + Math.random() * 4}px`,
+              width: `${60 + Math.random() * 80}px`,
+              height: `${60 + Math.random() * 80}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+              animation: `floatOrb ${15 + Math.random() * 10}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 5}s`,
+            }}
+          />
+        ))}
+        
+        {/* Small golden particles floating up */}
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={`particle-${i}`}
+            className="absolute rounded-full"
+            style={{
+              width: `${2 + Math.random() * 4}px`,
+              height: `${2 + Math.random() * 4}px`,
               left: `${Math.random() * 100}%`,
               bottom: '-10px',
               backgroundColor: '#D4AF37',
-              boxShadow: '0 0 8px #D4AF37, 0 0 16px rgba(212, 175, 55, 0.4)',
-              opacity: '0.6',
+              boxShadow: '0 0 10px #D4AF37, 0 0 20px rgba(212, 175, 55, 0.5)',
+              opacity: 0.7,
               animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${8 + Math.random() * 4}s`,
+              animationDuration: `${10 + Math.random() * 8}s`,
               animation: 'floatUp linear infinite',
               willChange: 'transform',
-              backfaceVisibility: 'hidden',
-              transform: 'translateZ(0)',
+            }}
+          />
+        ))}
+        
+        {/* Twinkling stars */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={`star-${i}`}
+            className="absolute"
+            style={{
+              width: '4px',
+              height: '4px',
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              backgroundColor: '#fff',
+              boxShadow: '0 0 6px #fff, 0 0 12px rgba(212, 175, 55, 0.8)',
+              borderRadius: '50%',
+              animation: `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 3}s`,
+              opacity: 0,
+            }}
+          />
+        ))}
+        
+        {/* Floating golden lines */}
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={`line-${i}`}
+            className="absolute"
+            style={{
+              width: '1px',
+              height: `${50 + Math.random() * 100}px`,
+              left: `${10 + i * 20}%`,
+              bottom: '-100px',
+              background: 'linear-gradient(to top, transparent, rgba(212, 175, 55, 0.4), transparent)',
+              animation: `floatUp ${12 + Math.random() * 6}s linear infinite`,
+              animationDelay: `${i * 2}s`,
             }}
           />
         ))}
       </div>
+      
+      {/* Add custom animations */}
+      <style>{`
+        @keyframes floatOrb {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+          25% { transform: translate(30px, -30px) scale(1.1); opacity: 0.5; }
+          50% { transform: translate(-20px, -60px) scale(0.9); opacity: 0.4; }
+          75% { transform: translate(40px, -30px) scale(1.05); opacity: 0.5; }
+        }
+        @keyframes twinkle {
+          0%, 100% { opacity: 0; transform: scale(0.5); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+      `}</style>
       {/* Main Container Box - Mobile First Design */}
       <div className="w-full max-w-7xl bg-black/20 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-white/10" style={{ minHeight: 'auto' }}>
         {/* Left Section - Agent Profile - Mobile Optimized */}

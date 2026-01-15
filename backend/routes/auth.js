@@ -3,6 +3,7 @@ const router = express.Router()
 const {
   register,
   login,
+  googleAuth,
   getMe,
   updateProfile,
   changePassword
@@ -12,6 +13,7 @@ const { protect } = require('../middleware/auth')
 // Public routes
 router.post('/register', register)
 router.post('/login', login)
+router.post('/google', googleAuth)
 
 // Protected routes
 router.get('/me', protect, getMe)

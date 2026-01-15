@@ -13,7 +13,7 @@ const Insights = () => {
   const fetchBlogs = async () => {
     try {
       setLoading(true)
-      const response = await fetch('http://localhost:4000/api/blogs')
+      const response = await fetch('http://localhost:4000/api/blogs?status=published')
       const data = await response.json()
       
       if (data.success) {

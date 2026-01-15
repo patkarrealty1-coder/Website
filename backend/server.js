@@ -46,6 +46,8 @@ app.use('/api/projects', require('./routes/projects'))
 app.use('/api/setup', require('./routes/setup'))
 app.use('/api/user', require('./routes/user'))
 app.use('/api/sitevisits', require('./routes/sitevisits'))
+app.use('/api/leads', require('./routes/leads'))
+app.use('/api/page-content', require('./routes/pageContent'))
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

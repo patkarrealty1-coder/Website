@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X, User, Heart, LogOut, ChevronDown } from 'lucide-react'
+import AuthForm from './AuthForm'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -8,6 +9,11 @@ const Navbar = () => {
   const [showServicesDropdown, setShowServicesDropdown] = useState(false)
   const [showLocalitiesDropdown, setShowLocalitiesDropdown] = useState(false)
   const [showLoginDropdown, setShowLoginDropdown] = useState(false)
+  const [showMobileServices, setShowMobileServices] = useState(false)
+  const [showMobileLocalities, setShowMobileLocalities] = useState(false)
+  const [showMobileMore, setShowMobileMore] = useState(false)
+  const [showAuthForm, setShowAuthForm] = useState(false)
+  const [authUserType, setAuthUserType] = useState('customer')
   const [user, setUser] = useState(null)
   const location = useLocation()
   const navigate = useNavigate()
@@ -45,6 +51,7 @@ const Navbar = () => {
     { name: 'Buy', path: '/buy' },
     { name: 'Rent', path: '/rent' },
     { name: 'Insights', path: '/insights' },
+    { name: 'AI Agent', path: '/ai-agent' },
   ]
 
   const servicesLinks = [
@@ -233,8 +240,26 @@ const Navbar = () => {
                 </button>
                 {showLoginDropdown && (
                   <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-xl py-2 z-50">
-                    <Link to="/login?type=customer" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">Customer Login</Link>
-                    <Link to="/login?type=agent" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">Agent Login</Link>
+                    <button 
+                      onClick={() => {
+                        setAuthUserType('customer')
+                        setShowAuthForm(true)
+                        setShowLoginDropdown(false)
+                      }} 
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600"
+                    >
+                      Customer Login
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setAuthUserType('agent')
+                        setShowAuthForm(true)
+                        setShowLoginDropdown(false)
+                      }} 
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600"
+                    >
+                      Agent Login
+                    </button>
                   </div>
                 )}
               </div>
@@ -261,26 +286,48 @@ const Navbar = () => {
                 </Link>
               ))}
               
-              {/* Mobile Services */}
+              {/* Mobile Services - Collapsible */}
               <div className="px-4 py-2">
-                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#D4AF37' }}>Services</div>
-                {servicesLinks.map((link) => (
-                  <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)}
-                    className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
-                    {link.name}
-                  </Link>
-                ))}
+                <button
+                  onClick={() => setShowMobileServices(!showMobileServices)}
+                  className="flex items-center justify-between w-full text-xs font-semibold uppercase tracking-wider mb-2"
+                  style={{ color: '#D4AF37' }}
+                >
+                  <span>Services</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${showMobileServices ? 'rotate-180' : ''}`} />
+                </button>
+                {showMobileServices && (
+                  <div className="space-y-1">
+                    {servicesLinks.map((link) => (
+                      <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)}
+                        className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* Mobile Localities */}
+              {/* Mobile Localities - Collapsible */}
               <div className="px-4 py-2">
-                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#D4AF37' }}>Localities</div>
-                {localitiesLinks.map((link) => (
-                  <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)}
-                    className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
-                    {link.name}
-                  </Link>
-                ))}
+                <button
+                  onClick={() => setShowMobileLocalities(!showMobileLocalities)}
+                  className="flex items-center justify-between w-full text-xs font-semibold uppercase tracking-wider mb-2"
+                  style={{ color: '#D4AF37' }}
+                >
+                  <span>Localities</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${showMobileLocalities ? 'rotate-180' : ''}`} />
+                </button>
+                {showMobileLocalities && (
+                  <div className="space-y-1">
+                    {localitiesLinks.map((link) => (
+                      <Link key={link.path} to={link.path} onClick={() => setIsOpen(false)}
+                        className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <Link to="/about" onClick={() => setIsOpen(false)}
@@ -294,25 +341,36 @@ const Navbar = () => {
                 Contact
               </Link>
 
-              {/* Mobile More Pages */}
+              {/* Mobile More Pages - Collapsible */}
               <div className="px-4 py-2">
-                <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#D4AF37' }}>More</div>
-                <Link to="/testimonials" onClick={() => setIsOpen(false)}
-                  className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
-                  Testimonials
-                </Link>
-                <Link to="/faq" onClick={() => setIsOpen(false)}
-                  className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
-                  FAQ
-                </Link>
-                <Link to="/share-requirements" onClick={() => setIsOpen(false)}
-                  className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
-                  Share Requirements
-                </Link>
-                <Link to="/agent-partnership" onClick={() => setIsOpen(false)}
-                  className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
-                  Partner with Us
-                </Link>
+                <button
+                  onClick={() => setShowMobileMore(!showMobileMore)}
+                  className="flex items-center justify-between w-full text-xs font-semibold uppercase tracking-wider mb-2"
+                  style={{ color: '#D4AF37' }}
+                >
+                  <span>More</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${showMobileMore ? 'rotate-180' : ''}`} />
+                </button>
+                {showMobileMore && (
+                  <div className="space-y-1">
+                    <Link to="/testimonials" onClick={() => setIsOpen(false)}
+                      className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                      Testimonials
+                    </Link>
+                    <Link to="/faq" onClick={() => setIsOpen(false)}
+                      className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                      FAQ
+                    </Link>
+                    <Link to="/share-requirements" onClick={() => setIsOpen(false)}
+                      className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                      Share Requirements
+                    </Link>
+                    <Link to="/agent-partnership" onClick={() => setIsOpen(false)}
+                      className="block py-1.5 text-sm transition-colors hover:opacity-80" style={{ color: '#C0C0C0' }}>
+                      Partner with Us
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Mobile Auth */}
@@ -329,8 +387,28 @@ const Navbar = () => {
                 ) : (
                   <div className="space-y-2 py-2">
                     <div className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#D4AF37' }}>Login As</div>
-                    <Link to="/login?type=customer" onClick={() => setIsOpen(false)} className="block py-1.5 text-sm" style={{ color: '#C0C0C0' }}>Customer</Link>
-                    <Link to="/login?type=agent" onClick={() => setIsOpen(false)} className="block py-1.5 text-sm" style={{ color: '#C0C0C0' }}>Agent</Link>
+                    <button 
+                      onClick={() => {
+                        setAuthUserType('customer')
+                        setShowAuthForm(true)
+                        setIsOpen(false)
+                      }} 
+                      className="block py-1.5 text-sm text-left w-full" 
+                      style={{ color: '#C0C0C0' }}
+                    >
+                      Customer
+                    </button>
+                    <button 
+                      onClick={() => {
+                        setAuthUserType('agent')
+                        setShowAuthForm(true)
+                        setIsOpen(false)
+                      }} 
+                      className="block py-1.5 text-sm text-left w-full" 
+                      style={{ color: '#C0C0C0' }}
+                    >
+                      Agent
+                    </button>
                   </div>
                 )}
               </div>
@@ -338,6 +416,14 @@ const Navbar = () => {
           </div>
         )}
       </div>
+
+      {/* Auth Form Modal */}
+      {showAuthForm && (
+        <AuthForm 
+          userType={authUserType}
+          onClose={() => setShowAuthForm(false)}
+        />
+      )}
     </nav>
   )
 }

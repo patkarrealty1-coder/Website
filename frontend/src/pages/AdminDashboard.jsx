@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Home, FileText, Briefcase, Users, LogOut, Plus, Sparkles, LogIn } from 'lucide-react'
+import { Home, FileText, Briefcase, Users, LogOut, Plus, Sparkles, LogIn, UserCheck } from 'lucide-react'
 
 const AdminDashboard = () => {
   const navigate = useNavigate()
@@ -498,6 +498,40 @@ const AdminDashboard = () => {
               >
                 <Plus className="h-4 w-4" />
                 Add New Ongoing
+              </Link>
+            </div>
+          </div>
+
+          {/* Page Content Management */}
+          <div className="bg-white rounded-lg shadow p-6 border-2 border-purple-200">
+            <div className="flex items-center gap-3 mb-4">
+              <FileText className="h-6 w-6 text-purple-600" />
+              <h2 className="text-xl font-bold text-gray-900">Page Content</h2>
+            </div>
+            <p className="text-gray-600 mb-4">Edit FAQ, Contact, About pages</p>
+            <div className="space-y-2">
+              <Link
+                to="/management/page-content"
+                className="block w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-center"
+              >
+                Manage Page Content
+              </Link>
+            </div>
+          </div>
+
+          {/* Leads Management */}
+          <div className="bg-white rounded-lg shadow p-6 border-2 border-green-200">
+            <div className="flex items-center gap-3 mb-4">
+              <UserCheck className="h-6 w-6 text-green-600" />
+              <h2 className="text-xl font-bold text-gray-900">Leads</h2>
+            </div>
+            <p className="text-gray-600 mb-4">View form submissions</p>
+            <div className="space-y-2">
+              <Link
+                to="/management/leads"
+                className="block w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-center"
+              >
+                Manage Leads
               </Link>
             </div>
           </div>

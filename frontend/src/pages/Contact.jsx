@@ -58,7 +58,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Address',
-      details: ['info@patkarsrealty.com']
+      details: ['support@patkarrealty.in']
     },
     {
       icon: Clock,
@@ -274,7 +274,7 @@ const Contact = () => {
                   <span>Call Now</span>
                 </a>
                 <a
-                  href="mailto:info@patkarsrealty.com"
+                  href="mailto:support@patkarrealty.in"
                   className="flex items-center justify-center space-x-2 border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-gray-800 transition-colors duration-300 font-medium"
                 >
                   <Mail className="h-5 w-5" />
