@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+// Image URL - ImgBB CDN for fast loading
+const HERO_IMAGE_URL = 'https://i.ibb.co/PJyfjKR/image.png'
+const HERO_IMAGE_FALLBACK = '/images/Firefly.png' // Local fallback
+
 const AnimatedText = () => {
   const [currentPhase, setCurrentPhase] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
@@ -31,22 +35,23 @@ const AnimatedText = () => {
       <div 
         className="w-full mx-auto px-4"
         style={{ 
-          maxWidth: '950px',
-          height: '200px',
+          maxWidth: '1100px',
+          minHeight: '240px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}
       >
         <div 
-          className={`text-center whitespace-pre-line leading-[1.2] transition-opacity duration-500 ease-in-out ${
+          className={`text-center whitespace-pre-line leading-[1.3] transition-opacity duration-500 ease-in-out ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ 
             fontFamily: "'Inter', 'Poppins', sans-serif",
             width: '100%',
             fontSize: 'inherit',
-            position: 'absolute'
+            position: 'absolute',
+            padding: '0 20px'
           }}
         >
           {texts[currentPhase]}
@@ -58,10 +63,28 @@ const AnimatedText = () => {
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
   const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
-    setTimeout(() => setIsLoaded(true), 100)
+    // Preload the hero image from CDN with fallback
+    const imgCDN = new Image()
+    const imgLocal = new Image()
+    
+    imgCDN.src = HERO_IMAGE_URL
+    imgCDN.onload = () => {
+      setImageLoaded(true)
+      setTimeout(() => setIsLoaded(true), 100)
+    }
+    imgCDN.onerror = () => {
+      // Fallback to local image if CDN fails
+      console.log('CDN image failed, using local fallback')
+      imgLocal.src = HERO_IMAGE_FALLBACK
+      imgLocal.onload = () => {
+        setImageLoaded(true)
+        setTimeout(() => setIsLoaded(true), 100)
+      }
+    }
 
     const handleScroll = () => {
       setScrollY(window.scrollY)
@@ -72,15 +95,25 @@ const Hero = () => {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-900">
+      {/* Loading placeholder */}
+      {!imageLoaded && (
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 animate-pulse">
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+      )}
+      
       {/* Full Background Image */}
       <div 
-        className="absolute inset-0 w-full h-full"
+        className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+          imageLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
         style={{
-          backgroundImage: 'url(/images/Firefly.png)',
+          backgroundImage: `url(${HERO_IMAGE_URL}), url(${HERO_IMAGE_FALLBACK})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          willChange: 'opacity',
         }}
       >
         {/* Dark overlay for better text visibility */}

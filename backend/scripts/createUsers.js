@@ -15,7 +15,7 @@ const createUsers = async () => {
         const adminData = {
             fullName: 'Admin User',
             email: 'admin@patkarsrealty.com',
-            password: 'admin123',
+            password: 'Patkarrealty2025',
             role: 'admin',
             phone: '+919876543210',
             isEmailVerified: true
@@ -37,7 +37,7 @@ const createUsers = async () => {
             await User.create(adminData)
             console.log('✅ Admin user created successfully!')
             console.log('Email:', adminData.email)
-            console.log('Password: admin123')
+            console.log('Password: Patkarrealty2025')
         } else {
             console.log('ℹ️  Admin user already exists')
         }
@@ -55,7 +55,7 @@ const createUsers = async () => {
 
         console.log('\n🚀 You can now login at: http://localhost:3000/login')
         console.log('\n📋 Login Credentials:')
-        console.log('Admin: admin@patkarsrealty.com / admin123')
+        console.log('Admin: admin@patkarsrealty.com / Patkarrealty2025')
         console.log('User:  user@patkarsrealty.com / user123')
 
         process.exit(0)

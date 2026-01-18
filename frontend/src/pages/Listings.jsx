@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import SearchFilter from '../components/SearchFilter'
 import PropertyCard from '../components/PropertyCard'
+import SkeletonList from '../components/SkeletonList'
 
 const Listings = () => {
   const [searchParams] = useSearchParams()
@@ -104,15 +105,9 @@ const Listings = () => {
     return (
       <div className="min-h-screen bg-gray-50 pt-32 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 rounded w-1/4 mb-8"></div>
-            <div className="h-32 bg-gray-300 rounded mb-8"></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="bg-gray-300 h-96 rounded-xl"></div>
-              ))}
-            </div>
-          </div>
+          <div className="h-8 bg-gray-200 rounded w-1/4 mb-8 animate-pulse"></div>
+          <div className="h-32 bg-gray-200 rounded mb-8 animate-pulse"></div>
+          <SkeletonList count={6} />
         </div>
       </div>
     )

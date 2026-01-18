@@ -1,53 +1,57 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import { lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Home from './pages/Home'
-import Listings from './pages/Listings'
-import PropertyDetail from './pages/PropertyDetail'
-import Contact from './pages/Contact'
-import Blog from './pages/Blog'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Wishlist from './pages/Wishlist'
-import WishlistDebug from './pages/WishlistDebug'
-import UserProfileModern from './pages/UserProfileModern'
-import ResidentialProperties from './pages/ResidentialProperties'
-import CommercialProperties from './pages/CommercialProperties'
-import Setup from './pages/Setup'
-import AdminDashboard from './pages/AdminDashboard'
-import AdminProperties from './pages/AdminProperties'
-import AdminPropertyForm from './pages/AdminPropertyForm'
-import AdminPendingProperties from './pages/AdminPendingProperties'
-import AdminBlogs from './pages/AdminBlogs'
-import AdminBlogForm from './pages/AdminBlogForm'
-import AdminPendingBlogs from './pages/AdminPendingBlogs'
-import AdminProjects from './pages/AdminProjects'
-import AdminProjectForm from './pages/AdminProjectForm'
-import AdminFeaturedProperties from './pages/AdminFeaturedProperties'
-import AdminPageContent from './pages/AdminPageContent'
-import AdminLeads from './pages/AdminLeads'
-import AIRealEstateAgent from './pages/AIRealEstateAgent'
-import PrivacyPolicy from './pages/PrivacyPolicy'
-import TermsConditions from './pages/TermsConditions'
-import OngoingProjects from './pages/OngoingProjects'
-import AdminOngoingProjects from './pages/AdminOngoingProjects'
-import AdminOngoingProjectForm from './pages/AdminOngoingProjectForm'
+import LoadingSpinner from './components/LoadingSpinner'
 import SmoothScroll from './components/SmoothScroll'
-import About from './pages/About'
-import BuyersInvestors from './pages/BuyersInvestors'
-import Sellers from './pages/Sellers'
-import Landlords from './pages/Landlords'
-import InvestmentAdvisory from './pages/InvestmentAdvisory'
-import LoanAssistance from './pages/LoanAssistance'
-import LegalDocumentation from './pages/LegalDocumentation'
-import Localities from './pages/Localities'
-import LocalityDetail from './pages/LocalityDetail'
-import FAQ from './pages/FAQ'
-import Testimonials from './pages/Testimonials'
-import Insights from './pages/Insights'
-import ShareRequirements from './pages/ShareRequirements'
-import AgentPartnership from './pages/AgentPartnership'
+
+// Lazy load pages for better performance
+const Home = lazy(() => import('./pages/Home'))
+const Listings = lazy(() => import('./pages/Listings'))
+const PropertyDetail = lazy(() => import('./pages/PropertyDetail'))
+const Contact = lazy(() => import('./pages/Contact'))
+const Blog = lazy(() => import('./pages/Blog'))
+const Login = lazy(() => import('./pages/Login'))
+const Register = lazy(() => import('./pages/Register'))
+const Wishlist = lazy(() => import('./pages/Wishlist'))
+const WishlistDebug = lazy(() => import('./pages/WishlistDebug'))
+const UserProfileModern = lazy(() => import('./pages/UserProfileModern'))
+const ResidentialProperties = lazy(() => import('./pages/ResidentialProperties'))
+const CommercialProperties = lazy(() => import('./pages/CommercialProperties'))
+const Setup = lazy(() => import('./pages/Setup'))
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
+const AdminProperties = lazy(() => import('./pages/AdminProperties'))
+const AdminPropertyForm = lazy(() => import('./pages/AdminPropertyForm'))
+const AdminPendingProperties = lazy(() => import('./pages/AdminPendingProperties'))
+const AdminBlogs = lazy(() => import('./pages/AdminBlogs'))
+const AdminBlogForm = lazy(() => import('./pages/AdminBlogForm'))
+const AdminPendingBlogs = lazy(() => import('./pages/AdminPendingBlogs'))
+const AdminProjects = lazy(() => import('./pages/AdminProjects'))
+const AdminProjectForm = lazy(() => import('./pages/AdminProjectForm'))
+const AdminFeaturedProperties = lazy(() => import('./pages/AdminFeaturedProperties'))
+const AdminPageContent = lazy(() => import('./pages/AdminPageContent'))
+const AdminLeads = lazy(() => import('./pages/AdminLeads'))
+const AIRealEstateAgent = lazy(() => import('./pages/AIRealEstateAgent'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const TermsConditions = lazy(() => import('./pages/TermsConditions'))
+const OngoingProjects = lazy(() => import('./pages/OngoingProjects'))
+const AdminOngoingProjects = lazy(() => import('./pages/AdminOngoingProjects'))
+const AdminOngoingProjectForm = lazy(() => import('./pages/AdminOngoingProjectForm'))
+const About = lazy(() => import('./pages/About'))
+const BuyersInvestors = lazy(() => import('./pages/BuyersInvestors'))
+const Sellers = lazy(() => import('./pages/Sellers'))
+const Landlords = lazy(() => import('./pages/Landlords'))
+const InvestmentAdvisory = lazy(() => import('./pages/InvestmentAdvisory'))
+const LoanAssistance = lazy(() => import('./pages/LoanAssistance'))
+const LegalDocumentation = lazy(() => import('./pages/LegalDocumentation'))
+const Localities = lazy(() => import('./pages/Localities'))
+const LocalityDetail = lazy(() => import('./pages/LocalityDetail'))
+const FAQ = lazy(() => import('./pages/FAQ'))
+const Testimonials = lazy(() => import('./pages/Testimonials'))
+const Insights = lazy(() => import('./pages/Insights'))
+const ShareRequirements = lazy(() => import('./pages/ShareRequirements'))
+const AgentPartnership = lazy(() => import('./pages/AgentPartnership'))
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''
 
@@ -58,7 +62,8 @@ function AppContent() {
   return (
     <div className="min-h-screen flex flex-col">
       {!isAdminRoute && <Navbar />}
-      <Routes>
+      <Suspense fallback={<LoadingSpinner message="Loading page..." />}>
+        <Routes>
           {/* Setup & Login Routes - Now with Navbar */}
           <Route path="/setup" element={<Setup />} />
           <Route path="/login" element={<Login />} />
@@ -358,6 +363,7 @@ function AppContent() {
             </SmoothScroll>
           } />
         </Routes>
+      </Suspense>
     </div>
   )
 }

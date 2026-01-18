@@ -3,7 +3,7 @@ import { Eye, EyeOff, Mail, Lock, X } from 'lucide-react';
 import { GoogleLogin } from '@react-oauth/google';
 import './AuthForm.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 const AuthForm = ({ userType: initialUserType = 'customer', onClose, onLoginSuccess, initialMode = 'login' }) => {

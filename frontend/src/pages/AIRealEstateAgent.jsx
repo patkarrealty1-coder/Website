@@ -72,7 +72,7 @@ const ChatBot = () => {
     setInput("")
     setIsTyping(true)
     try {
-      const res = await fetch("https://n8n.srv967587.hstgr.cloud/webhook/9fcbabb7-1153-42be-9bdb-80b80a8d282d", {
+      const res = await fetch("https://n8n.srv967587.hstgr.cloud/webhook/168d18c2-caf9-4f0d-a059-aad64a8cf1fa", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
@@ -82,7 +82,9 @@ const ChatBot = () => {
           message: trimmed,
           query: trimmed,
           input: trimmed,
-          text: trimmed
+          text: trimmed,
+          timestamp: new Date().toISOString(),
+          source: 'AI Real Estate Agent Chat'
         }),
       })
       let botReply = "No response"

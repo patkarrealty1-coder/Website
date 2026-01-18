@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, CheckCircle, Users, UserPlus, MapPin, ArrowRight } from 'lucide-react'
+import { X, CheckCircle, Users, UserPlus, MapPin, ArrowRight, UserCheck } from 'lucide-react'
 
 const AgentPartnership = () => {
   const [showModal, setShowModal] = useState(false)
@@ -99,7 +99,7 @@ const AgentPartnership = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 mb-8">
             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-              <Handshake className="h-6 w-6 text-purple-600" />
+              <UserCheck className="h-6 w-6 text-purple-600" />
             </div>
             <h2 className="text-3xl font-bold text-gray-900">Our Collaboration Philosophy</h2>
           </div>
